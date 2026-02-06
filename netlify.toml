@@ -1,6 +1,3 @@
-[build]
-  # Build settings now managed in the Netlify UI to support multiple subdomains
-
 [build.environment]
   NX_DAEMON = "false"
   TURBO_TELEMETRY_DISABLED = "1"
