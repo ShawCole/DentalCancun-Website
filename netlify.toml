@@ -2,5 +2,9 @@
   command = "npx turbo build --filter=marketing"
   publish = "apps/marketing/.next"
 
+[build.environment]
+  NX_DAEMON = "false"
+  TURBO_TELEMETRY_DISABLED = "1"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
