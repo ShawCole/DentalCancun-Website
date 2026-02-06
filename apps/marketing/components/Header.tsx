@@ -21,7 +21,7 @@ export const Header = ({ forceSolid = false }: { forceSolid?: boolean }) => {
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
                 <a href="/" className={`relative transition-opacity hover:opacity-90`}>
                     {/* Desktop: Flat Logo */}
-                    <div className="hidden lg:block relative h-12 w-64">
+                    <div className="hidden md:block relative h-12 w-64">
                         <Image
                             src="/redesign/DentalSolutions_Logo_Flat.png"
                             alt="Dental Solutions"
@@ -30,7 +30,7 @@ export const Header = ({ forceSolid = false }: { forceSolid?: boolean }) => {
                         />
                     </div>
                     {/* Tablet/Mobile: Stacked Logo */}
-                    <div className="hidden sm:block lg:hidden relative h-16 w-40">
+                    <div className="hidden min-[340px]:block md:hidden relative h-16 w-40">
                         <Image
                             src="/redesign/DentalSolutions_Logo_Stacked.png"
                             alt="Dental Solutions"
@@ -39,7 +39,7 @@ export const Header = ({ forceSolid = false }: { forceSolid?: boolean }) => {
                         />
                     </div>
                     {/* Tiny: Favicon */}
-                    <div className="block sm:hidden relative h-10 w-10">
+                    <div className="block min-[340px]:hidden relative h-10 w-10">
                         <Image
                             src="/redesign/DentalSolutions_Favicon.png"
                             alt="Dental Solutions"
