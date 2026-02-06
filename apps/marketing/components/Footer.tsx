@@ -1,12 +1,18 @@
 import React from "react";
+import Image from "next/image";
 
 export const Footer = () => {
     return (
         <footer className="bg-primary py-20 text-white px-6">
             <div className="mx-auto max-w-7xl grid gap-12 md:grid-cols-4">
                 <div className="col-span-2">
-                    <div className="mb-6 text-2xl font-serif font-bold text-white">
-                        DENTAL<span className="text-gold">SOLUTIONS</span>
+                    <div className="mb-6 relative h-20 w-48">
+                        <Image
+                            src="/redesign/DentalSolutions_Logo_Stacked.png"
+                            alt="Dental Solutions"
+                            fill
+                            className="object-contain object-left invert brightness-0"
+                        />
                     </div>
                     <p className="max-w-md text-white/60 mb-8 font-light leading-relaxed">
                         Leading the way in cosmetic dental tourism. We combine unparalleled medical expertise with a premium vacation experience in the heart of Cancun.

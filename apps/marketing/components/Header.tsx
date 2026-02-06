@@ -19,14 +19,12 @@ export const Header = ({ forceSolid = false }: { forceSolid?: boolean }) => {
     return (
         <nav className={`fixed top-0 z-50 w-full transition-all duration-500 ${solid ? "bg-white/95 py-4 shadow-lg backdrop-blur-md" : "bg-transparent py-6"}`}>
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-                <a href="/" className="flex items-center">
+                <a href="/" className={`relative h-20 w-48 transition-opacity hover:opacity-90`}>
                     <Image
                         src="/redesign/DentalSolutions_Logo_Stacked.png"
                         alt="Dental Solutions"
-                        width={160}
-                        height={60}
-                        className={`object-contain transition-all duration-300 ${solid ? "brightness-100" : "brightness-[200] contrast-200"}`}
-                        priority
+                        fill
+                        className="object-contain object-left"
                     />
                 </a>
                 <div className={`hidden space-x-8 md:flex ${solid ? "text-charcoal" : "text-white"}`}>
