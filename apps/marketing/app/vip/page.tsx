@@ -27,8 +27,15 @@ export default function VIPLandingPage() {
             {/* Header */}
             <nav className="fixed top-0 z-50 w-full border-b bg-white/90 py-4 backdrop-blur-md">
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-                    <a href="/" className="text-2xl font-serif font-bold">
-                        DENTAL<span className="text-gold">SOLUTIONS</span>
+                    <a href="/" className="flex items-center">
+                        <Image
+                            src="/redesign/DentalSolutions_Logo_Stacked.png"
+                            alt="Dental Solutions"
+                            width={160}
+                            height={60}
+                            className="object-contain"
+                            priority
+                        />
                     </a>
                     <div className="flex items-center gap-6">
                         <a href="https://wa.me/529841145997" className="hidden text-sm font-bold text-primary hover:text-gold md:block">
