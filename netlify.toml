@@ -1,3 +1,6 @@
+[build]
+  ignore = "node scripts/netlify-ignore.mjs"
+
 [build.environment]
   NX_DAEMON = "false"
   TURBO_TELEMETRY_DISABLED = "1"
