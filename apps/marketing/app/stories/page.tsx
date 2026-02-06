@@ -206,7 +206,7 @@ export default function StoriesPage() {
                                 ))}
                             </div>
 
-                            <a href="/redesign/vip" className="rounded-full bg-primary px-8 py-3 font-bold text-white hover:bg-gold transition-all duration-300 inline-block text-center">
+                            <a href="/vip" className="rounded-full bg-primary px-8 py-3 font-bold text-white hover:bg-gold transition-all duration-300 inline-block text-center">
                                 START YOUR JOURNEY
                             </a>
                         </div>
@@ -238,7 +238,7 @@ export default function StoriesPage() {
             {/* CTA Section */}
             <section className="bg-gold py-20 px-6 text-center text-white">
                 <h2 className="mb-8 text-4xl font-serif font-bold">Ready for Your Own Transformation?</h2>
-                <a href="/redesign/vip" className="rounded-full bg-primary px-12 py-4 text-lg font-bold hover:bg-white hover:text-primary transition-all duration-300 shadow-xl inline-block">
+                <a href="/vip" className="rounded-full bg-primary px-12 py-4 text-lg font-bold hover:bg-white hover:text-primary transition-all duration-300 shadow-xl inline-block">
                     FREE VIRTUAL CONSULTATION
                 </a>
             </section>

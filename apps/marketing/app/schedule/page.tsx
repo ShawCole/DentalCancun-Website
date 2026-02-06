@@ -99,7 +99,7 @@ export default function SchedulePage() {
                                     ))}
                                 </ul>
                                 <a
-                                    href="/redesign/vip"
+                                    href="/vip"
                                     className={`w-full rounded-xl py-4 text-sm font-bold transition-all text-center ${idx === selectedPackage ? "bg-gold text-white" : "bg-primary text-white"
                                         }`}
                                 >
