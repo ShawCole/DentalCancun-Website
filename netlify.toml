@@ -1,6 +1,5 @@
 [build]
-  command = "npm ci && npx turbo build --filter=marketing"
-  publish = "apps/marketing/.next"
+  # Build settings now managed in the Netlify UI to support multiple subdomains
 
 [build.environment]
   NX_DAEMON = "false"
