@@ -1,6 +1,5 @@
 [build]
-  base = "/"
-  command = "npm install && npx turbo build --filter=marketing"
+  command = "npm ci && npx turbo build --filter=marketing"
   publish = "apps/marketing/.next"
 
 [build.environment]
