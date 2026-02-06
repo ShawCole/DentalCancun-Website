@@ -27,13 +27,34 @@ export default function VIPLandingPage() {
             {/* Header */}
             <nav className="fixed top-0 z-50 w-full border-b bg-white/90 py-4 backdrop-blur-md">
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-                    <a href="/" className="relative h-16 w-40 transition-opacity hover:opacity-90">
-                        <Image
-                            src="/redesign/DentalSolutions_Logo_Stacked.png"
-                            alt="Dental Solutions"
-                            fill
-                            className="object-contain object-left"
-                        />
+                    <a href="/" className="relative transition-opacity hover:opacity-90">
+                        {/* Desktop: Flat Logo */}
+                        <div className="hidden lg:block relative h-12 w-64">
+                            <Image
+                                src="/redesign/DentalSolutions_Logo_Flat.png"
+                                alt="Dental Solutions"
+                                fill
+                                className="object-contain object-left"
+                            />
+                        </div>
+                        {/* Tablet/Mobile: Stacked Logo */}
+                        <div className="hidden sm:block lg:hidden relative h-16 w-40">
+                            <Image
+                                src="/redesign/DentalSolutions_Logo_Stacked.png"
+                                alt="Dental Solutions"
+                                fill
+                                className="object-contain object-left"
+                            />
+                        </div>
+                        {/* Tiny: Favicon */}
+                        <div className="block sm:hidden relative h-10 w-10">
+                            <Image
+                                src="/redesign/DentalSolutions_Favicon.png"
+                                alt="Dental Solutions"
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
                     </a>
                     <div className="flex items-center gap-6">
                         <a href="https://wa.me/529841145997" className="hidden text-sm font-bold text-primary hover:text-gold md:block">
