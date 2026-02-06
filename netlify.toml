@@ -1,12 +1,13 @@
 [build]
   base = "/"
-  command = "npx turbo build --filter=marketing"
+  command = "npm install && npx turbo build --filter=marketing"
   publish = "apps/marketing/.next"
 
 [build.environment]
   NX_DAEMON = "false"
   TURBO_TELEMETRY_DISABLED = "1"
   NEXT_PRIVATE_DEBUG_CACHE = "1"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
