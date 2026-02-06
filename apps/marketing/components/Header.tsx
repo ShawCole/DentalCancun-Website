@@ -19,13 +19,34 @@ export const Header = ({ forceSolid = false }: { forceSolid?: boolean }) => {
     return (
         <nav className={`fixed top-0 z-50 w-full transition-all duration-500 ${solid ? "bg-white/95 py-4 shadow-lg backdrop-blur-md" : "bg-transparent py-6"}`}>
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-                <a href="/" className={`relative h-20 w-48 transition-opacity hover:opacity-90`}>
-                    <Image
-                        src="/redesign/DentalSolutions_Logo_Stacked.png"
-                        alt="Dental Solutions"
-                        fill
-                        className="object-contain object-left"
-                    />
+                <a href="/" className={`relative transition-opacity hover:opacity-90`}>
+                    {/* Desktop: Flat Logo */}
+                    <div className="hidden lg:block relative h-12 w-64">
+                        <Image
+                            src="/redesign/DentalSolutions_Logo_Flat.png"
+                            alt="Dental Solutions"
+                            fill
+                            className="object-contain object-left"
+                        />
+                    </div>
+                    {/* Tablet/Mobile: Stacked Logo */}
+                    <div className="hidden sm:block lg:hidden relative h-16 w-40">
+                        <Image
+                            src="/redesign/DentalSolutions_Logo_Stacked.png"
+                            alt="Dental Solutions"
+                            fill
+                            className="object-contain object-left"
+                        />
+                    </div>
+                    {/* Tiny: Favicon */}
+                    <div className="block sm:hidden relative h-10 w-10">
+                        <Image
+                            src="/redesign/DentalSolutions_Favicon.png"
+                            alt="Dental Solutions"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
                 </a>
                 <div className={`hidden space-x-8 md:flex ${solid ? "text-charcoal" : "text-white"}`}>
                     <a href="/" className="text-sm font-medium hover:text-gold transition-colors">Home</a>
