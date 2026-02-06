@@ -16,10 +16,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "DentalSolutions Cancun | Premium Dental Tourism",
   description: "Experience the pinnacle of dental tourism. Award-winning specialists and luxury smile transformations in the heart of Cancun.",
-  icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
-  },
 };
 
 export default function RootLayout({
