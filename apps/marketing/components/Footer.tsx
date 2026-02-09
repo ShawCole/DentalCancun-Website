@@ -26,10 +26,10 @@ export const Footer = () => {
                 <div>
                     <h4 className="mb-6 font-bold text-gold uppercase tracking-widest text-sm">Quick Links</h4>
                     <ul className="space-y-4 text-white/70">
-                        <li><a href="#" className="hover:text-gold transition-colors">Veneers</a></li>
-                        <li><a href="#" className="hover:text-gold transition-colors">Dental Implants</a></li>
-                        <li><a href="#" className="hover:text-gold transition-colors">Smile Makeover</a></li>
-                        <li><a href="/vip" className="hover:text-gold transition-colors">VIP Program</a></li>
+                        <li><a href="/veneers" className="hover:text-gold transition-colors">Veneers</a></li>
+                        <li><a href="/implants" className="hover:text-gold transition-colors">Dental Implants</a></li>
+                        <li><a href="/smile-makeover" className="hover:text-gold transition-colors">Smile Makeover</a></li>
+                        <li><a href="/lp/vip-experience" className="hover:text-gold transition-colors">VIP Experience</a></li>
                         <li><a href="/privacy" className="hover:text-gold transition-colors">Privacy Policy</a></li>
                     </ul>
                 </div>

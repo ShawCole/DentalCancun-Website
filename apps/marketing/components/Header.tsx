@@ -52,9 +52,8 @@ export const Header = ({ forceSolid = false }: { forceSolid?: boolean }) => {
                     <a href="/" className="text-sm font-medium hover:text-gold transition-colors">Home</a>
                     <a href="/stories" className="text-sm font-medium hover:text-gold transition-colors">Success Stories</a>
                     <a href="/vip" className="text-sm font-medium hover:text-gold transition-colors">VIP Program</a>
-                    <a href="/schedule" className="text-sm font-medium hover:text-gold transition-colors">Prices</a>
                 </div>
-                <a href="/vip" className="rounded-full bg-gold px-6 py-2 text-sm font-semibold text-white hover:bg-primary transition-all duration-300">
+                <a href="/schedule" className="rounded-full bg-gold px-6 py-2 text-sm font-semibold text-white hover:bg-primary transition-all duration-300">
                     Book Consultation
                 </a>
             </div>

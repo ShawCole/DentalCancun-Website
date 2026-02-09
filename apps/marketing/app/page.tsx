@@ -37,19 +37,16 @@ export default function RedesignHome() {
                 <div className="relative z-10 flex h-full items-center justify-center px-6">
                     <div className="max-w-4xl text-center">
                         <h1 className="mb-6 animate-fade-up text-5xl font-serif font-extrabold text-white md:text-7xl">
-                            Designer Smiles <br />
-                            <span className="text-gold italic">Engineered in Golden Hour</span>
+                            Luxury Cosmetic <br />
+                            <span className="text-gold italic">Dentistry in Cancun</span>
                         </h1>
                         <p className="mb-10 animate-fade-up text-lg text-white/90 md:text-xl font-light tracking-wide delay-100">
-                            Experience the pinnacle of dental tourism. Award-winning specialists, <br className="hidden md:block" />
-                            luxury suites, and a world-class smile transformation with a view.
+                            Trusted by international patients seeking precision, <br className="hidden md:block" />
+                            ethics, and long-term aesthetic results.
                         </p>
                         <div className="flex flex-col items-center justify-center gap-4 animate-fade-up sm:flex-row delay-200">
-                            <a href="/vip" className="rounded-full bg-gold px-10 py-4 text-lg font-bold text-white shadow-xl hover:bg-white hover:text-gold transition-all duration-300 transform hover:scale-105">
-                                GET FREE QUOTE
-                            </a>
-                            <a href="/schedule" className="rounded-full border-2 border-white/50 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm hover:bg-white hover:text-primary transition-all duration-300 text-center">
-                                VIEW TREATMENTS
+                            <a href="/schedule" className="rounded-full bg-gold px-10 py-4 text-lg font-bold text-white shadow-xl hover:bg-white hover:text-gold transition-all duration-300 transform hover:scale-105">
+                                Book a Consultation
                             </a>
                         </div>
                     </div>

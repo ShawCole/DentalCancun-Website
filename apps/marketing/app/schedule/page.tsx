@@ -4,54 +4,7 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-const packages = [
-    {
-        name: "Non-Invasive Nanotech",
-        price: "$5,500",
-        savings: "All-Inclusive",
-        features: [
-            "20 High-Tech Composite Veneers",
-            "No Drilling / Non-Invasive",
-            "2-Night Luxury Stay Included",
-            "Daily Chef-Prepared Meals",
-            "Same-Day Smile Reveal",
-            "Perfect for Minor Corrections"
-        ],
-        popular: false,
-    },
-    {
-        name: "Non-Invasive Porcelain",
-        price: "$6,500",
-        savings: "All-Inclusive",
-        features: [
-            "20 Pure Porcelain Veneers",
-            "Minimal Prep / No Pain",
-            "2-Night Luxury Stay Included",
-            "Chef-Prepared Meals Included",
-            "Advanced Shade Matching",
-            "Stain-Resistant Technology"
-        ],
-        popular: true,
-    },
-    {
-        name: "Non-Invasive Zirconia",
-        price: "$7,500",
-        savings: "All-Inclusive",
-        features: [
-            "20 Premium Zirconia",
-            "Maximum Durability & Shine",
-            "2-Night Luxury Stay Included",
-            "Full Concierge & Meals",
-            "Life-Like Translucency",
-            "The Ultimate Non-Invasive Result"
-        ],
-        popular: false,
-    }
-];
-
 export default function SchedulePage() {
-    const [selectedPackage, setSelectedPackage] = useState(0);
-
     return (
         <div className="min-h-screen bg-white font-sans text-primary">
             <Header forceSolid={true} />
@@ -60,53 +13,48 @@ export default function SchedulePage() {
             <section className="bg-zinc-50 pt-32 pb-20 px-6">
                 <div className="mx-auto max-w-7xl">
                     <div className="mb-16 text-center">
-                        <h1 className="mb-4 text-5xl font-serif font-bold md:text-6xl text-primary">Transparent Pricing</h1>
+                        <h1 className="mb-4 text-5xl font-serif font-bold md:text-6xl text-primary">Your Smile Design Gallery</h1>
                         <p className="mx-auto max-w-2xl text-lg text-zinc-500 font-light">
-                            Experience the "gold standard" of dental tourism. No hidden costs, just world-class results at a fraction of US/Canada prices.
+                            Experience the "gold standard" of dental tourism. Our approach is conservative, ethical, and based on long-term results.
                         </p>
                     </div>
 
-                    <div className="grid gap-8 md:grid-cols-3">
-                        {packages.map((pkg, idx) => (
-                            <div
-                                key={idx}
-                                className={`relative flex flex-col rounded-3xl p-8 transition-all duration-500 cursor-pointer ${idx === selectedPackage
-                                    ? "bg-primary text-white shadow-2xl scale-105"
-                                    : "bg-white text-primary shadow-sm hover:shadow-xl border border-zinc-100"
-                                    }`}
-                                onClick={() => setSelectedPackage(idx)}
-                            >
-                                {pkg.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-xs font-bold text-white uppercase tracking-widest">
-                                        Most Popular
-                                    </div>
-                                )}
-                                <div className="mb-8 border-b pb-8 border-zinc-100/20">
-                                    <h3 className="mb-2 text-xl font-serif font-bold">{pkg.name}</h3>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-4xl font-bold">{pkg.price}</span>
-                                        <span className="text-sm opacity-60">USD</span>
-                                    </div>
-                                    <div className="mt-2 text-xs font-bold text-gold uppercase tracking-tighter">
-                                        {pkg.savings} vs. US Avg.
-                                    </div>
-                                </div>
-                                <ul className="mb-10 space-y-4 flex-grow">
-                                    {pkg.features.map((feat, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm opacity-90">
-                                            <span className="text-gold">✓</span> {feat}
-                                        </li>
-                                    ))}
+                    <div className="rounded-3xl bg-primary p-12 text-white shadow-2xl">
+                        <div className="grid gap-12 md:grid-cols-2 items-center">
+                            <div>
+                                <h3 className="mb-6 text-3xl font-serif font-bold">Request a Professional Evaluation</h3>
+                                <p className="mb-8 text-white/80 font-light leading-relaxed">
+                                    Veneers and smile makeovers are highly customized medical treatments. We do not provide fixed price lists because every case is unique.
+                                    <br /><br />
+                                    Your investment is determined only after a professional evaluation of your bite, enamel, and facial harmony.
+                                </p>
+                                <ul className="mb-10 space-y-4">
+                                    <li className="flex items-center gap-3 text-sm opacity-90">
+                                        <span className="text-gold">✓</span> Comprehensive Digital Assessment
+                                    </li>
+                                    <li className="flex items-center gap-3 text-sm opacity-90">
+                                        <span className="text-gold">✓</span> Personalized Treatment Roadmap
+                                    </li>
+                                    <li className="flex items-center gap-3 text-sm opacity-90">
+                                        <span className="text-gold">✓</span> Transparent Investment Discussion
+                                    </li>
                                 </ul>
                                 <a
-                                    href="/vip"
-                                    className={`w-full rounded-xl py-4 text-sm font-bold transition-all text-center ${idx === selectedPackage ? "bg-gold text-white" : "bg-primary text-white"
-                                        }`}
+                                    href="https://wa.me/529841145997"
+                                    className="inline-block rounded-xl bg-gold px-10 py-5 text-lg font-bold text-white shadow-xl hover:bg-white hover:text-gold transition-all duration-300 transform hover:scale-[1.02]"
                                 >
-                                    SECURE THIS PRICE
+                                    GET EVALUATED
                                 </a>
                             </div>
-                        ))}
+                            <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg border border-white/10">
+                                <Image
+                                    src="/redesign/PHOTO-2025-12-17-21-07-18 6.jpg"
+                                    alt="Professional Evaluation"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
