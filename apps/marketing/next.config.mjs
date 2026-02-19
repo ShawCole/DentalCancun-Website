@@ -6,6 +6,14 @@ const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
   outputFileTracingRoot: path.join(__dirname, "../../"),
   eslint: {
     ignoreDuringBuilds: true,
