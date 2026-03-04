@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import clsx from "clsx";
@@ -31,22 +31,39 @@ const stories = [
 
 const videos = [
     { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b6793379d2316b471e21a.mp4", name: "Sarah's Transformation" },
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b660c14eb6a868a001d8f.mp4", name: "Michael's New Smile" },
-    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974750759a77b9387a9f4c8.mp4", name: "Anna's Confidence", muteDuration: 0.5 },
+    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b660c14eb6a868a001d8f.mp4", name: "Michael's New Smile", muteWindow: [10.82, 10.98] },
+    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974750759a77b9387a9f4c8.mp4", name: "Anna's Confidence", muteDuration: 0.5, scale: 1.08 },
     { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b73b1013f312fd4892a65.mp4", name: "David's Experience" },
     { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974756ea87beb425d7caaae.mp4", name: "Matteo's Journey", startTime: 0.8 },
 ];
 
-const VideoTestimonial = ({ video }: { video: { url: string; name: string; startTime?: number; muteDuration?: number } }) => {
+const VideoTestimonial = ({ video, isVisible }: { video: { url: string; name: string; startTime?: number; muteDuration?: number }; isVisible?: boolean }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const start = video.startTime ?? 0.1;
+
+    // Intersection Observer — only mount video when card enters viewport
+    useEffect(() => {
+        if (isVisible !== undefined) {
+            setIsMounted(isVisible);
+            return;
+        }
+        const el = containerRef.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsMounted(entry.isIntersecting),
+            { rootMargin: '200px' }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [isVisible]);
 
     const handleInteraction = (active: boolean) => {
         setIsHovered(active);
         if (videoRef.current) {
             if (active) {
-                // Programmatic mute for specific duration if requested
                 if (video.muteDuration) {
                     videoRef.current.muted = true;
                     setTimeout(() => {
@@ -67,23 +84,28 @@ const VideoTestimonial = ({ video }: { video: { url: string; name: string; start
 
     return (
         <div
+            ref={containerRef}
             className="flex-shrink-0 w-[280px] md:w-[320px] group overflow-hidden rounded-2xl bg-zinc-100 shadow-xl transition-all hover:shadow-2xl mx-3 md:mx-6 cursor-pointer relative"
             onMouseEnter={() => handleInteraction(true)}
             onMouseLeave={() => handleInteraction(false)}
         >
             <div className="relative aspect-[9/16] bg-zinc-900 overflow-hidden">
-                <video
-                    ref={videoRef}
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className={clsx(
-                        "absolute inset-0 h-full w-full object-cover z-10 transition-transform duration-700",
-                        isHovered ? "scale-105" : "scale-100"
-                    )}
-                >
-                    <source src={`${video.url}#t=${start}`} type="video/mp4" />
-                </video>
+                {isMounted ? (
+                    <video
+                        ref={videoRef}
+                        loop
+                        playsInline
+                        preload="metadata"
+                        className={clsx(
+                            "absolute inset-0 h-full w-full object-cover z-10 transition-transform duration-700",
+                            isHovered ? "scale-105" : "scale-100"
+                        )}
+                    >
+                        <source src={`${video.url}#t=${start}`} type="video/mp4" />
+                    </video>
+                ) : (
+                    <div className="absolute inset-0 bg-zinc-800 z-10" />
+                )}
 
                 {/* Scrim Overlay when not hovered */}
                 <div className={clsx(

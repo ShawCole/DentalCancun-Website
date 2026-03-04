@@ -1,42 +1,54 @@
 "use client"
 
-import { useEffect, useState, RefObject } from "react"
+import { useEffect, useRef, useCallback, RefObject } from "react"
 
-export function useScrollProgress(ref: RefObject<HTMLElement | null>, offsetPercentage: number = 0.75) {
-    const [drawHeight, setDrawHeight] = useState(0)
+/**
+ * Scroll-driven progress that writes directly to the DOM via refs,
+ * bypassing React re-renders for butter-smooth 60fps animation.
+ *
+ * Returns a ref whose `.current` is always the latest drawHeight (number).
+ * Calls `onUpdate(height)` on every animation frame for imperative DOM updates.
+ */
+export function useScrollProgress(
+    containerRef: RefObject<HTMLElement | null>,
+    offsetPercentage: number = 0.75,
+    onUpdate?: (height: number) => void,
+) {
+    const drawHeightRef = useRef(0)
+    const rafId = useRef(0)
+
+    const tick = useCallback(() => {
+        if (!containerRef.current) return
+
+        const rect = containerRef.current.getBoundingClientRect()
+        const targetY = window.innerHeight * offsetPercentage
+        const height = Math.max(0, Math.min(targetY - rect.top, rect.height))
+
+        // Only update DOM if value actually changed (avoid layout thrashing)
+        if (height !== drawHeightRef.current) {
+            drawHeightRef.current = height
+            onUpdate?.(height)
+        }
+    }, [containerRef, offsetPercentage, onUpdate])
 
     useEffect(() => {
         const handleScroll = () => {
-            if (!ref.current) return
-
-            const rect = ref.current.getBoundingClientRect()
-            const targetY = window.innerHeight * offsetPercentage
-            const containerTop = rect.top
-            const containerHeight = rect.height
-
-            // Calculate how far the target line is into the container
-            // If containerTop is at targetY, we are at 0.
-            // As container moves up (containerTop decreases), the draw height increases.
-            // drawHeight = targetY - containerTop
-            let height = targetY - containerTop
-
-            // Clamp between 0 and full height
-            height = Math.max(0, Math.min(height, containerHeight))
-
-            setDrawHeight(height)
+            cancelAnimationFrame(rafId.current)
+            rafId.current = requestAnimationFrame(tick)
         }
 
-        window.addEventListener("scroll", handleScroll)
-        window.addEventListener("resize", handleScroll)
+        window.addEventListener("scroll", handleScroll, { passive: true })
+        window.addEventListener("resize", handleScroll, { passive: true })
 
         // Initial calculation
-        handleScroll()
+        tick()
 
         return () => {
+            cancelAnimationFrame(rafId.current)
             window.removeEventListener("scroll", handleScroll)
             window.removeEventListener("resize", handleScroll)
         }
-    }, [ref, offsetPercentage])
+    }, [tick])
 
-    return drawHeight
+    return drawHeightRef
 }

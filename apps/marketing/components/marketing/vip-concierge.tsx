@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollProgress } from '@/hooks/use-scroll-progress';
 
@@ -58,16 +58,20 @@ const VIP_STEPS: Step[] = [
     }
 ];
 
+const BUFFER = 60;
+
 export function VIPConcierge() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const drawHeight = useScrollProgress(containerRef, 0.65);
+    const goldLineRef = useRef<HTMLDivElement>(null);
+    const dotRef = useRef<HTMLDivElement>(null);
+    const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [stepOffsets, setStepOffsets] = useState<number[]>([]);
-    const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
         if (!containerRef.current) return;
         const updateOffsets = () => {
-            const offsets = stepsRef.current.map(el => {
+            const offsets = contentRefs.current.map(el => {
                 if (!el || !containerRef.current) return 0;
                 return el.offsetTop;
             });
@@ -80,6 +84,57 @@ export function VIPConcierge() {
             window.removeEventListener('resize', updateOffsets);
         };
     }, []);
+
+    // Direct DOM mutation on every scroll frame — no React re-renders
+    const handleScrollUpdate = useCallback((height: number) => {
+        // 1. Gold line height
+        if (goldLineRef.current) {
+            goldLineRef.current.style.height = `${height}px`;
+        }
+
+        // 2. Step icons + content — set inline styles so CSS transitions interpolate smoothly
+        stepOffsets.forEach((stepTop, index) => {
+            // Icon top edge = stepTop + marginTop (0.75rem ≈ 12px)
+            const iconTop = stepTop + 12;
+            const distance = height - iconTop;
+            const isAtDot = distance >= 0 && distance < BUFFER;
+            const isPassed = distance >= BUFFER;
+            const isHighlight = distance >= 0;
+
+            const iconEl = iconRefs.current[index];
+            if (iconEl) {
+                if (isAtDot) {
+                    iconEl.style.borderColor = '#D4AF37';
+                    iconEl.style.color = '#D4AF37';
+                    iconEl.style.boxShadow = '0 0 20px rgba(212,175,55,0.4)';
+                    iconEl.style.transform = 'translateX(-50%) scale(1.1)';
+                } else if (isPassed) {
+                    iconEl.style.borderColor = '#D4AF37';
+                    iconEl.style.color = 'rgba(212,175,55,0.7)';
+                    iconEl.style.boxShadow = 'none';
+                    iconEl.style.transform = 'translateX(-50%) scale(1)';
+                } else {
+                    iconEl.style.borderColor = '#e5e5e5';
+                    iconEl.style.color = '#d4d4d4';
+                    iconEl.style.boxShadow = 'none';
+                    iconEl.style.transform = 'translateX(-50%) scale(0.9)';
+                }
+            }
+
+            const contentEl = contentRefs.current[index];
+            if (contentEl) {
+                contentEl.style.opacity = isHighlight ? '1' : '0.3';
+                contentEl.style.transform = isHighlight ? 'translateX(0)' : 'translateX(1rem)';
+
+                const title = contentEl.querySelector('h4') as HTMLElement | null;
+                if (title) {
+                    title.style.color = isHighlight ? '#171717' : '#a3a3a3';
+                }
+            }
+        });
+    }, [stepOffsets]);
+
+    useScrollProgress(containerRef, 0.55, handleScrollUpdate);
 
     return (
         <section className="py-24 bg-white">
@@ -96,77 +151,63 @@ export function VIPConcierge() {
                 <div ref={containerRef} className="relative max-w-3xl mx-auto flex gap-12 md:gap-20 pl-4 md:pl-0">
                     {/* TIMELINE TRACK */}
                     <div className="relative w-1 bg-neutral-100 rounded-full flex-shrink-0">
-                        {/* THE GOLD LINE */}
+                        {/* THE GOLD LINE — no CSS transition, driven directly by rAF */}
                         <div
-                            className="absolute top-0 left-0 w-full bg-[#D4AF37] rounded-full transition-all duration-75 ease-linear"
-                            style={{ height: `${drawHeight}px` }}
+                            ref={goldLineRef}
+                            className="absolute top-0 left-0 w-full bg-[#D4AF37] rounded-full will-change-[height]"
+                            style={{ height: 0, transition: 'height 0.12s ease-out' }}
                         >
                             {/* THE GLOWING DOT */}
-                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#D4AF37] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.6)] z-0">
+                            <div ref={dotRef} className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#D4AF37] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.6)] z-0">
                                 <div className="absolute inset-0 bg-white rounded-full scale-50 animate-pulse" />
                             </div>
                         </div>
 
                         {/* STEP ICONS */}
                         <div className="absolute inset-0 pointer-events-none">
-                            {VIP_STEPS.map((step, index) => {
-                                const stepTop = stepOffsets[index] || 0;
-                                const distance = drawHeight - stepTop;
-                                const buffer = 60;
-
-                                const isAtDot = Math.abs(distance) < buffer;
-                                const isPassed = distance >= buffer;
-
-                                return (
-                                    <div
-                                        key={step.id + '-icon'}
-                                        className={cn(
-                                            "absolute left-1/2 -translate-x-1/2 w-14 h-14 rounded-full border-2 flex items-center justify-center bg-white transition-all duration-500 z-10",
-                                            isAtDot
-                                                ? "border-[#D4AF37] text-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.4)] scale-110"
-                                                : isPassed
-                                                    ? "border-[#D4AF37] text-[#D4AF37]/70 scale-100"
-                                                    : "border-neutral-200 text-neutral-300 scale-90"
-                                        )}
-                                        style={{ top: `${stepTop}px`, marginTop: '0.75rem' }}
-                                    >
-                                        <div className="scale-110 md:scale-125">
-                                            {step.icon}
-                                        </div>
+                            {VIP_STEPS.map((step, index) => (
+                                <div
+                                    key={step.id + '-icon'}
+                                    ref={el => { iconRefs.current[index] = el }}
+                                    className="absolute left-1/2 w-14 h-14 rounded-full border-2 flex items-center justify-center bg-white z-10"
+                                    style={{
+                                        top: `${stepOffsets[index] || 0}px`,
+                                        marginTop: '0.75rem',
+                                        transition: 'border-color 0.5s, color 0.5s, box-shadow 0.5s, transform 0.5s',
+                                        borderColor: '#e5e5e5',
+                                        color: '#d4d4d4',
+                                        transform: 'translateX(-50%) scale(0.9)',
+                                    }}
+                                >
+                                    <div className="scale-110 md:scale-125">
+                                        {step.icon}
                                     </div>
-                                );
-                            })}
+                                </div>
+                            ))}
                         </div>
                     </div>
 
                     {/* STEPS CONTENT */}
                     <div className="flex-1 space-y-24 py-10">
-                        {VIP_STEPS.map((step, index) => {
-                            const stepTop = stepOffsets[index] || 0;
-                            const distance = drawHeight - stepTop;
-                            const isHighlight = distance >= -40;
-
-                            return (
-                                <div
-                                    key={step.id}
-                                    ref={el => { stepsRef.current[index] = el }}
-                                    className={cn(
-                                        "relative transition-all duration-500 pl-4 md:pl-8",
-                                        isHighlight ? "opacity-100 translate-x-0" : "opacity-30 translate-x-4"
-                                    )}
-                                >
-                                    <h4 className={cn(
-                                        "text-2xl md:text-3xl font-serif font-bold mb-2 transition-colors",
-                                        isHighlight ? "text-neutral-900" : "text-neutral-400"
-                                    )}>
-                                        {step.title}
-                                    </h4>
-                                    <p className="text-lg text-neutral-600 font-medium">
-                                        {step.description}
-                                    </p>
-                                </div>
-                            );
-                        })}
+                        {VIP_STEPS.map((step, index) => (
+                            <div
+                                key={step.id}
+                                ref={el => { contentRefs.current[index] = el }}
+                                className="relative pl-4 md:pl-8"
+                                style={{
+                                    transition: 'opacity 0.5s, transform 0.5s',
+                                    opacity: 0.3,
+                                    transform: 'translateX(1rem)',
+                                }}
+                            >
+                                <h4 className="text-2xl md:text-3xl font-serif font-bold mb-2" style={{ transition: 'color 0.5s', color: '#a3a3a3' }}>
+                                    {step.title}
+                                </h4>
+                                <p className="text-lg text-neutral-600 font-medium">
+                                    {step.description}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </div>
 

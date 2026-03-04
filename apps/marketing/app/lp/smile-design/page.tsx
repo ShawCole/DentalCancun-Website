@@ -13,44 +13,83 @@ export default function SmileDesignPage() {
     return (
         <main className="min-h-screen bg-white font-sans text-neutral-900 selection:bg-amber-100 selection:text-amber-900">
 
-            {/* 1. HERO SECTION: Full-screen natural smile - SMART EFFICIENCY (Light/Clean) */}
-            <section className="relative h-screen flex items-center justify-center overflow-hidden bg-neutral-50">
+            {/* 1. HERO SECTION */}
+            <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-neutral-900">
+                {/* Background — real clinic photo, swap when Franklin provides new assets */}
                 <div className="absolute inset-0 z-0">
-                    {/* High-key, bright, professional imagery */}
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
+                    <div className="absolute inset-0 bg-[url('/redesign/PHOTO-2025-12-17-21-07-18%205.jpg')] bg-cover bg-center" />
+                    <div className="absolute inset-0 bg-black/60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
                 </div>
 
-                <div className="relative z-20 text-center px-4 max-w-4xl mx-auto space-y-8 animate-in fade-in zoom-in duration-1000">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium tracking-tight text-neutral-900 leading-[1.1]">
-                        Non-Invasive Veneers in Cancun <br />
-                        <span className="text-amber-600">Natural Smile Without Tooth Reduction</span>
+                {/* Trust badge */}
+                <div className="relative z-20 flex items-center gap-2 mb-6 animate-in fade-in duration-700">
+                    <div className="flex gap-0.5">
+                        {[1, 2, 3, 4, 5].map(i => (
+                            <span key={i} className="text-[#D4AF37] text-sm">&#9733;</span>
+                        ))}
+                    </div>
+                    <span className="text-white/60 text-sm font-medium tracking-wide">25 Years &middot; Master&apos;s Degree</span>
+                </div>
+
+                {/* Headline */}
+                <div className="relative z-20 text-center px-4 max-w-4xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-white leading-[1.1]">
+                        Fly In Friday.<br />
+                        Get Your Dream Smile.<br />
+                        <span className="text-[#D4AF37] italic">Fly Home Sunday.</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto font-light leading-relaxed">
-                        Transform your smile without grinding down your teeth, painlessly, and preserving as much of your natural tooth structure as possible.
+                    <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed">
+                        Boutique cosmetic dentistry by Dr.&nbsp;Carolina Aguirre,&nbsp;M.S. &mdash; 25&nbsp;years of precision, steps from the Grand&nbsp;Hyatt, 15&nbsp;minutes from Cancun&nbsp;Airport.
                     </p>
 
-                    <div className="pt-8 flex flex-col md:flex-row gap-4 justify-center items-center">
+                    {/* CTAs */}
+                    <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <Link
-                            href="#consultation"
-                            className="bg-neutral-900 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-neutral-800 transition-all hover:scale-105 shadow-xl"
+                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
+                            className="bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20 flex items-center gap-2"
                         >
-                            Schedule a consultation
+                            Send Your Photos &rarr; Get Your Plan
                         </Link>
-                        <div className="flex gap-4">
+                        <div className="flex gap-3">
                             <Link
-                                href="https://wa.me/1234567890"
-                                className="bg-green-600 text-white px-6 py-4 rounded-full text-lg font-medium hover:bg-green-500 transition-all shadow-lg flex items-center gap-2"
+                                href="https://wa.me/529841145997"
+                                className="bg-[#25D366] text-white px-6 py-4 rounded-full text-lg font-medium hover:bg-[#20bd5a] transition-all shadow-lg flex items-center gap-2"
                             >
-                                <span>Direct WhatsApp</span>
+                                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                WhatsApp
                             </Link>
                             <Link
-                                href="tel:+1234567890"
-                                className="bg-transparent border border-neutral-300 text-neutral-600 px-6 py-4 rounded-full text-lg font-medium hover:bg-neutral-100 transition-all"
+                                href="tel:+529841145997"
+                                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-all"
                             >
-                                Call now
+                                Call Now
                             </Link>
                         </div>
+                    </div>
+                </div>
+
+                {/* Trust bar */}
+                <div className="relative z-20 mt-12 w-full max-w-3xl mx-auto px-4 animate-in fade-in slide-in-from-bottom-2 duration-1000 delay-300">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        {[
+                            { label: "Grand Hyatt Building", icon: "🏨" },
+                            { label: "15 Min from Airport", icon: "✈️" },
+                            { label: "25 Years Experience", icon: "🎓" },
+                            { label: "Smile in a Weekend", icon: "✨" },
+                        ].map((item) => (
+                            <div key={item.label} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 text-center">
+                                <span className="text-lg">{item.icon}</span>
+                                <p className="text-white/80 text-xs font-medium mt-1 tracking-wide">{item.label}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Scroll indicator */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
+                    <div className="h-10 w-6 rounded-full border-2 border-white/30 flex justify-center p-1">
+                        <div className="h-2 w-1 bg-white rounded-full"></div>
                     </div>
                 </div>
             </section>
@@ -71,49 +110,49 @@ export default function SmileDesignPage() {
             {/* 4. PROOF: Optimized Stories */}
             <OptimizedStories />
 
-            {/* 5. LOGIC: Our Approach & Ideal Candidates */}
-            <section className="py-24 bg-white">
+            {/* 5. LOGIC: Why Us & Is This For You */}
+            <section className="py-24 bg-neutral-950 text-white">
                 <div className="container mx-auto px-4 max-w-6xl">
-                    <div className="grid md:grid-cols-2 gap-16">
-                        {/* Our Approach */}
-                        <div>
-                            <h3 className="text-3xl font-serif mb-8 border-b-2 border-amber-500 inline-block pb-2">Our Approach</h3>
-                            <ul className="space-y-4">
-                                {[
-                                    "Digital Smile Design prior to treatment",
-                                    "Mock-up to visualize the result before bonding",
-                                    "Facial analysis and personalized proportions",
-                                    "Highly translucent ceramic materials",
-                                    "Conservative Adhesive Protocols",
-                                    "Minimally Invasive Dentistry"
-                                ].map((item, i) => (
-                                    <li key={i} className="flex items-center gap-3 text-lg text-neutral-700">
-                                        <span className="text-amber-500 text-xl">✓</span>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                    <div className="text-center mb-16">
+                        <h2 className="text-sm font-bold tracking-[0.2em] text-[#D4AF37] uppercase mb-3">Boutique Precision</h2>
+                        <h3 className="text-3xl md:text-5xl font-serif">Why Patients Choose Dr.&nbsp;Carolina</h3>
+                    </div>
 
-                        {/* Ideal Candidates - Clean Checklist Style */}
-                        <div className="bg-white p-10 rounded-3xl border border-neutral-200 shadow-sm relative overflow-hidden">
-                            <h3 className="text-3xl font-serif mb-8 text-neutral-900 relative z-10">Ideal Candidates</h3>
-                            <ul className="space-y-4 relative z-10">
-                                {[
-                                    "Small teeth",
-                                    "Gaps between teeth",
-                                    "Minor wear",
-                                    "Pigmentation or stains",
-                                    "Small fractures",
-                                    "Patients who want to improve their smile without tooth reduction"
-                                ].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-lg text-neutral-600">
-                                        <span className="text-green-600 font-bold mt-1 text-xl">✓</span>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
+                    <div className="grid md:grid-cols-3 gap-6 mb-20">
+                        {[
+                            { icon: "🎯", title: "Digital Smile Design", desc: "See your new smile before any work begins. Every case starts with a personalized digital blueprint." },
+                            { icon: "🔬", title: "Premium Materials", desc: "Gold-diamond, carbon diamonds, and zirconia — certified authentic. No compromises on what goes in your mouth." },
+                            { icon: "🤲", title: "Minimally Invasive", desc: "We preserve your natural tooth structure. Conservative adhesive protocols mean less drilling, faster recovery." },
+                            { icon: "👁️", title: "Facial Analysis", desc: "Proportions tailored to your face — not a one-size-fits-all template. Your smile, designed for you." },
+                            { icon: "🏗️", title: "In-House Fabrication", desc: "Veneers crafted in our specialized lab. No outsourcing, no waiting weeks for a third party." },
+                            { icon: "✨", title: "Try Before You Commit", desc: "A physical mock-up lets you see and feel the result before final bonding. Full confidence, zero surprises." },
+                        ].map((item, i) => (
+                            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
+                                <span className="text-3xl block mb-4">{item.icon}</span>
+                                <h4 className="text-lg font-bold mb-2 group-hover:text-[#D4AF37] transition-colors">{item.title}</h4>
+                                <p className="text-white/60 text-sm leading-relaxed">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Is This For You */}
+                    <div className="max-w-2xl mx-auto">
+                        <h3 className="text-2xl md:text-3xl font-serif text-center mb-10">Is This For You?</h3>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            {[
+                                "Small or uneven teeth",
+                                "Gaps between teeth",
+                                "Surface wear or chips",
+                                "Stains or discoloration",
+                                "Small fractures",
+                                "Want a better smile — no grinding",
+                            ].map((item, i) => (
+                                <div key={i} className="bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-xl px-4 py-3 text-center">
+                                    <p className="text-white/90 text-sm font-medium">{item}</p>
+                                </div>
+                            ))}
                         </div>
+                        <p className="text-center text-white/40 text-sm mt-6">If any of these sound like you, send us your photos and we&apos;ll tell you exactly what&apos;s possible.</p>
                     </div>
                 </div>
             </section>
