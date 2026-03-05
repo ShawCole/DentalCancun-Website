@@ -3,11 +3,11 @@
 import { VideoCarousel, type VideoTestimonialData } from './video-carousel';
 
 const VIDEO_TESTIMONIALS: VideoTestimonialData[] = [
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b6793379d2316b471e21a.mp4", name: "Sarah's Transformation" },
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b660c14eb6a868a001d8f.mp4", name: "Michael's New Smile", muteWindow: [10.82, 10.98] },
-    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974750759a77b9387a9f4c8.mp4", name: "Anna's Confidence", muteDuration: 0.5, scale: 1.08 },
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b73b1013f312fd4892a65.mp4", name: "David's Experience" },
-    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974756ea87beb425d7caaae.mp4", name: "Matteo's Journey", startTime: 0.8 },
+    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b6793379d2316b471e21a.mp4", name: "Micaela's Transformation" },
+    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b660c14eb6a868a001d8f.mp4", name: "Moshi's New Smile", muteWindow: [10.82, 10.98] },
+    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974750759a77b9387a9f4c8.mp4", name: "Moë's Confidence", muteDuration: 0.5, scale: 1.08 },
+    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b73b1013f312fd4892a65.mp4", name: "Nara's Experience" },
+    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974756ea87beb425d7caaae.mp4", name: "Gonzalo's Journey", startTime: 0.8 },
 ];
 
 export function OptimizedStories() {

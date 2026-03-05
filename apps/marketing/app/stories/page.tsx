@@ -7,7 +7,7 @@ import clsx from "clsx";
 
 const stories = [
     {
-        name: "Sarah Jenkins",
+        name: "Micaela",
         location: "Los Angeles, CA",
         treatment: "Full Set Porcelain Veneers",
         quote: "I never thought I could afford a smile this perfect. The experience in Cancun was better than any dental visit I've had in the US. It truly was a vacation for my smile.",
@@ -21,7 +21,7 @@ const stories = [
         image: "/redesign/result1.png",
     },
     {
-        name: "Anna Rodriguez",
+        name: "Moë",
         location: "Miami, FL",
         treatment: "Hollywood Smile Makeover",
         quote: "From the concierge picking me up at the airport to the final reveal, everything was seamless. I feel like a new person with my designer smile.",
@@ -30,11 +30,11 @@ const stories = [
 ];
 
 const videos = [
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b6793379d2316b471e21a.mp4", name: "Sarah's Transformation" },
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b660c14eb6a868a001d8f.mp4", name: "Michael's New Smile", muteWindow: [10.82, 10.98] },
-    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974750759a77b9387a9f4c8.mp4", name: "Anna's Confidence", muteDuration: 0.5, scale: 1.08 },
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b73b1013f312fd4892a65.mp4", name: "David's Experience" },
-    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974756ea87beb425d7caaae.mp4", name: "Matteo's Journey", startTime: 0.8 },
+    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b6793379d2316b471e21a.mp4", name: "Micaela's Transformation" },
+    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b660c14eb6a868a001d8f.mp4", name: "Moshi's New Smile", muteWindow: [10.82, 10.98] },
+    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974750759a77b9387a9f4c8.mp4", name: "Moë's Confidence", muteDuration: 0.5, scale: 1.08 },
+    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b73b1013f312fd4892a65.mp4", name: "Nara's Experience" },
+    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974756ea87beb425d7caaae.mp4", name: "Gonzalo's Journey", startTime: 0.8 },
 ];
 
 const VideoTestimonial = ({ video, isVisible }: { video: { url: string; name: string; startTime?: number; muteDuration?: number }; isVisible?: boolean }) => {

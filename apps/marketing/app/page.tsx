@@ -79,7 +79,7 @@ export default function RedesignHome() {
                                 <p className="text-lg font-serif italic text-charcoal">
                                     "Choosing Dental Solutions was the best decision I've ever made. The facility is world-class and the results are life-changing."
                                 </p>
-                                <p className="mt-4 font-bold text-primary">— Sarah J., California</p>
+                                <p className="mt-4 font-bold text-primary">— Micaela, California</p>
                             </div>
                         </div>
 
