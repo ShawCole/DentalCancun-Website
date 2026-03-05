@@ -30,11 +30,11 @@ const stories = [
 ];
 
 const videos = [
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b6793379d2316b471e21a.mp4", name: "Micaela's Transformation" },
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b660c14eb6a868a001d8f.mp4", name: "Moshi's New Smile", muteWindow: [10.82, 10.98] },
-    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974750759a77b9387a9f4c8.mp4", name: "Moë's Confidence", muteDuration: 0.5, scale: 1.08 },
-    { url: "https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b73b1013f312fd4892a65.mp4", name: "Nara's Experience" },
-    { url: "https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974756ea87beb425d7caaae.mp4", name: "Gonzalo's Journey", startTime: 0.8 },
+    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de407bdf3846d57b29d0.mp4", name: "Micaela's Transformation" },
+    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de407bdf380d017b29cf.mp4", name: "Moshi's New Smile" },
+    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40c1e328bcdcc4f902.mp4", name: "Moë's Confidence", scale: 1.08 },
+    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40bffadffa05b6ff91.mp4", name: "Nara's Experience" },
+    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40b003fac523c58ecc.mp4", name: "Gonzalo's Journey", startTime: 0.8 },
 ];
 
 const VideoTestimonial = ({ video, isVisible }: { video: { url: string; name: string; startTime?: number; muteDuration?: number }; isVisible?: boolean }) => {

@@ -18,30 +18,30 @@ const SAMPLE_STORIES: Story[] = [
     {
         id: '1',
         thumbnail: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop', // Micaela - Professional Headshot look
-        videoUrl: 'https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b6793379d2316b471e21a.mp4',
+        videoUrl: 'https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de407bdf3846d57b29d0.mp4',
         title: 'Full Mouth Restoration',
         patientName: 'Micaela',
     },
     {
         id: '2',
-        thumbnail: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop', // Michael - Suit/Corporate look
-        videoUrl: 'https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b660c14eb6a868a001d8f.mp4',
+        thumbnail: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop', // Moshi - Suit/Corporate look
+        videoUrl: 'https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de407bdf380d017b29cf.mp4',
         title: 'Executive Implants',
-        patientName: 'Michael Chen',
+        patientName: 'Moshi',
     },
     {
         id: '3',
         thumbnail: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop', // Moë - Polished look
-        videoUrl: 'https://storage.googleapis.com/msgsndr/dq3ylOAKb1QTcAeFKnwl/media/6974750759a77b9387a9f4c8.mp4',
+        videoUrl: 'https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40c1e328bcdcc4f902.mp4',
         title: 'Hollywood Smile',
         patientName: 'Moë',
     },
     {
         id: '4',
-        thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop', // David - Casual yet premium
-        videoUrl: 'https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/691b73b1013f312fd4892a65.mp4',
+        thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop', // Nara - Casual yet premium
+        videoUrl: 'https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40bffadffa05b6ff91.mp4',
         title: 'Confidence Reclaimed',
-        patientName: 'David S.',
+        patientName: 'Nara',
     },
 ];
 
