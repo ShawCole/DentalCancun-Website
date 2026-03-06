@@ -31,8 +31,8 @@ const stories = [
 
 const videos = [
     { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de407bdf3846d57b29d0.mp4", name: "Micaela's Transformation" },
-    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de407bdf380d017b29cf.mp4", name: "Moshi's New Smile" },
-    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40c1e328bcdcc4f902.mp4", name: "Moë's Confidence", scale: 1.08 },
+    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69aa253436702f1b4fff3135.mp4", name: "Moshi's New Smile" },
+    { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69aa257abffadfcc03c19f84.mp4", name: "Moë's Confidence", scale: 1.08 },
     { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40bffadffa05b6ff91.mp4", name: "Nara's Experience" },
     { url: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40b003fac523c58ecc.mp4", name: "Gonzalo's Journey", startTime: 0.8 },
 ];

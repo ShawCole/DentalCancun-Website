@@ -25,14 +25,14 @@ const SAMPLE_STORIES: Story[] = [
     {
         id: '2',
         thumbnail: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop', // Moshi - Suit/Corporate look
-        videoUrl: 'https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de407bdf380d017b29cf.mp4',
+        videoUrl: 'https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69aa253436702f1b4fff3135.mp4',
         title: 'Executive Implants',
         patientName: 'Moshi',
     },
     {
         id: '3',
         thumbnail: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop', // Moë - Polished look
-        videoUrl: 'https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69a9de40c1e328bcdcc4f902.mp4',
+        videoUrl: 'https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69aa257abffadfcc03c19f84.mp4',
         title: 'Hollywood Smile',
         patientName: 'Moë',
     },
