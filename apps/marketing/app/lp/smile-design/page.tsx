@@ -120,7 +120,6 @@ export default function SmileDesignPage() {
 
                     <div className="grid md:grid-cols-3 gap-6 mb-20">
                         {[
-                            { icon: "🎯", title: "Digital Smile Design", desc: "See your new smile before any work begins. Every case starts with a personalized digital blueprint." },
                             { icon: "🔬", title: "Premium Materials", desc: "Gold-diamond, carbon diamonds, and zirconia — certified authentic. No compromises on what goes in your mouth." },
                             { icon: "🤲", title: "Minimally Invasive", desc: "We preserve your natural tooth structure. Conservative adhesive protocols mean less drilling, faster recovery." },
                             { icon: "👁️", title: "Facial Analysis", desc: "Proportions tailored to your face — not a one-size-fits-all template. Your smile, designed for you." },
@@ -145,7 +144,7 @@ export default function SmileDesignPage() {
                                 "Surface wear or chips",
                                 "Stains or discoloration",
                                 "Small fractures",
-                                "Want a better smile — no grinding",
+                                "Want a better smile?",
                             ].map((item, i) => (
                                 <div key={i} className="bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-xl px-4 py-3 text-center">
                                     <p className="text-white/90 text-sm font-medium">{item}</p>

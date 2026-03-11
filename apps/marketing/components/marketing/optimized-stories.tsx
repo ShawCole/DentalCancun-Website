@@ -39,7 +39,7 @@ export function OptimizedStories() {
 
             <div className="container mx-auto px-4 mt-16 text-center">
                 <p className="text-neutral-500 text-sm uppercase tracking-[0.3em] font-medium">
-                    Hover to play &bull; Authentic patient results
+                    Click to play &bull; Authentic patient results
                 </p>
             </div>
         </section>
