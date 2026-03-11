@@ -40,7 +40,7 @@ export default function SmileDesignPage() {
                         <span className="text-[#D4AF37] italic">Fly Home Sunday.</span>
                     </h1>
                     <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed">
-                        Boutique cosmetic dentistry by Dr.&nbsp;Carolina Aguirre,&nbsp;M.S. &mdash; 25&nbsp;years of precision, steps from the Grand&nbsp;Hyatt, 15&nbsp;minutes from Cancun&nbsp;Airport.
+                        Boutique cosmetic dentistry by Dr.&nbsp;Carolina Aguirre,&nbsp;M.S. &mdash; 25&nbsp;years of precision, 15&nbsp;minutes from Cancun&nbsp;Airport.
                     </p>
 
                     {/* CTAs */}
@@ -73,7 +73,7 @@ export default function SmileDesignPage() {
                 <div className="relative z-20 mt-12 w-full max-w-3xl mx-auto px-4 animate-in fade-in slide-in-from-bottom-2 duration-1000 delay-300">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {[
-                            { label: "Grand Hyatt Building", icon: "🏨" },
+                            { label: "15 Min from Airport", icon: "🏨" },
                             { label: "15 Min from Airport", icon: "✈️" },
                             { label: "25 Years Experience", icon: "🎓" },
                             { label: "Smile in a Weekend", icon: "✨" },
@@ -120,11 +120,9 @@ export default function SmileDesignPage() {
 
                     <div className="grid md:grid-cols-3 gap-6 mb-20">
                         {[
-                            { icon: "🔬", title: "Premium Materials", desc: "Gold-diamond, carbon diamonds, and zirconia — certified authentic. No compromises on what goes in your mouth." },
-                            { icon: "🤲", title: "Minimally Invasive", desc: "We preserve your natural tooth structure. Conservative adhesive protocols mean less drilling, faster recovery." },
-                            { icon: "👁️", title: "Facial Analysis", desc: "Proportions tailored to your face — not a one-size-fits-all template. Your smile, designed for you." },
-                            { icon: "🏗️", title: "In-House Fabrication", desc: "Veneers crafted in our specialized lab. No outsourcing, no waiting weeks for a third party." },
-                            { icon: "✨", title: "Try Before You Commit", desc: "A physical mock-up lets you see and feel the result before final bonding. Full confidence, zero surprises." },
+                            { icon: "💎", title: "Same Materials, Fraction of the Price", desc: "Gold-diamond, carbon diamonds, and zirconia — the same premium materials used in the US. $15k here vs $40–50k stateside." },
+                            { icon: "✈️", title: "Weekend Turnaround", desc: "Fly in Friday, get your dream smile, fly home Sunday. Non-invasive veneers done in a single trip." },
+                            { icon: "🎓", title: "25 Years of Expertise", desc: "Dr. Carolina Aguirre holds a Master's degree and has 25 years of precision cosmetic dentistry experience." },
                         ].map((item, i) => (
                             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
                                 <span className="text-3xl block mb-4">{item.icon}</span>
@@ -167,10 +165,9 @@ export default function SmileDesignPage() {
                     <div className="space-y-8">
                         {[
                             { step: "01", title: "Clinical evaluation and digital analysis." },
-                            { step: "02", title: "Personalized digital smile design." },
-                            { step: "03", title: "Aesthetic trial (model)." },
-                            { step: "04", title: "Veneer fabrication in a specialized laboratory." },
-                            { step: "05", title: "Final adhesive bonding." }
+                            { step: "02", title: "Personalized smile design." },
+                            { step: "03", title: "Veneer fabrication in a specialized laboratory." },
+                            { step: "04", title: "Final adhesive bonding." }
                         ].map((item, i) => (
                             <div key={i} className="flex items-center gap-6 bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <span className="text-4xl font-serif font-bold text-amber-200">{item.step}</span>
