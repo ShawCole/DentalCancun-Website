@@ -73,7 +73,7 @@ export default function SmileDesignPage() {
                 <div className="relative z-20 mt-12 w-full max-w-3xl mx-auto px-4 animate-in fade-in slide-in-from-bottom-2 duration-1000 delay-300">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {[
-                            { label: "15 Min from Airport", icon: "🏨" },
+                            { label: "500+ Happy Smiles", icon: "😁" },
                             { label: "15 Min from Airport", icon: "✈️" },
                             { label: "25 Years Experience", icon: "🎓" },
                             { label: "Smile in a Weekend", icon: "✨" },
@@ -94,7 +94,106 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
-            {/* 2. HOOK: Definition */}
+            {/* 2. SCROLL TIMELINE: VIP Concierge */}
+            <VIPConcierge />
+
+            {/* 3. MEET DR. CAROLINA */}
+            <section className="py-24 bg-neutral-50">
+                <div className="container mx-auto px-4 max-w-5xl">
+                    <div className="text-center mb-12">
+                        <h2 className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">Your Smile Designer</h2>
+                        <h3 className="text-3xl md:text-5xl font-serif">Meet Dr.&nbsp;Carolina</h3>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+                        <div className="w-full md:w-2/5 flex-shrink-0">
+                            <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-xl">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src="https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69b9dc5dad02768b3f5ce10f.jpeg"
+                                    alt="Dr. Carolina Aguirre — Cosmetic Dentist"
+                                    width={400}
+                                    height={533}
+                                    loading="eager"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="w-full md:w-3/5 space-y-6">
+                            <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
+                                With over 30 years of specialization in aesthetic and cosmetic dentistry, Dr. Carolina has transformed thousands of smiles using the latest techniques in non-invasive and minimally invasive veneer treatments.
+                            </p>
+                            <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
+                                Her passion for creating natural, beautiful smiles combined with her meticulous attention to detail has made her one of the most sought-after smile designers in Quintana Roo, Mexico.
+                            </p>
+                            <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
+                                Dr. Carolina&apos;s expertise in working with premium German composites and her artistic approach to smile design ensures that every patient receives personalized, stunning results that enhance their natural beauty and boost their confidence.
+                            </p>
+                            <div className="flex flex-wrap gap-3 pt-2">
+                                {["30+ Years Experience", "Aesthetic Specialist", "Thousands of Smiles"].map((tag) => (
+                                    <span key={tag} className="bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. BEFORE & AFTER */}
+            <section className="py-24 bg-white">
+                <div className="container mx-auto px-4 max-w-5xl">
+                    <div className="text-center mb-16">
+                        <h2 className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">Real Results</h2>
+                        <h3 className="text-3xl md:text-5xl font-serif">Before &amp; After</h3>
+                    </div>
+
+                    <div className="space-y-12">
+                        {[
+                            {
+                                name: "Benjamin",
+                                before: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/6974756ec1fa0c89a53ba47f.jpg",
+                                after: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/6974756ed4fb907676826e1b.jpg",
+                            },
+                            {
+                                name: "Jessica",
+                                before: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/6974756e59a77b0352a9ff38.jpg",
+                                after: "https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/6974756ed4fb900460826e1d.jpg",
+                            },
+                        ].map((patient) => (
+                            <div key={patient.name} className="space-y-3">
+                                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-100">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={patient.before}
+                                            alt={`${patient.name} before treatment`}
+                                            loading="lazy"
+                                            className="absolute inset-0 w-full h-full object-cover"
+                                        />
+                                        <span className="absolute top-3 left-3 bg-neutral-900/70 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">Before</span>
+                                    </div>
+                                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-100">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={patient.after}
+                                            alt={`${patient.name} after treatment`}
+                                            loading="lazy"
+                                            className="absolute inset-0 w-full h-full object-cover"
+                                        />
+                                        <span className="absolute top-3 left-3 bg-[#D4AF37] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">After</span>
+                                    </div>
+                                </div>
+                                <p className="text-center font-serif font-bold text-neutral-700 text-sm">{patient.name}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. DEFINITION */}
             <section className="py-24 bg-neutral-50 border-b border-neutral-100">
                 <div className="container mx-auto px-4 max-w-4xl text-center">
                     <h2 className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-6">The Definition</h2>
@@ -104,13 +203,10 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
-            {/* 3. EASE: VIP Concierge */}
-            <VIPConcierge />
-
-            {/* 4. PROOF: Optimized Stories */}
+            {/* 6. PROOF: Video Testimonials */}
             <OptimizedStories />
 
-            {/* 5. LOGIC: Why Us & Is This For You */}
+            {/* 7. LOGIC: Why Us & Is This For You */}
             <section className="py-24 bg-neutral-950 text-white">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="text-center mb-16">
@@ -154,7 +250,7 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
-            {/* 6. PROCESS: 5-Step Breakdown */}
+            {/* 8. PROCESS */}
             <section className="py-24 bg-neutral-50">
                 <div className="container mx-auto px-4 max-w-4xl">
                     <div className="text-center mb-16">
@@ -178,7 +274,7 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
-            {/* 7. SAFETY: FAQ & Philosophy */}
+            {/* 9. FAQ & Philosophy */}
             <section className="py-24 bg-white">
                 <div className="container mx-auto px-4 max-w-4xl">
                     <h2 className="text-4xl font-serif text-center mb-12">Frequently Asked Questions</h2>
@@ -213,7 +309,7 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
-            {/* 8. CTA SECTION */}
+            {/* 10. CTA SECTION */}
             <section id="consultation" className="py-32 bg-neutral-900 text-white text-center px-4 relative overflow-hidden mb-[60px] md:mb-0">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
                 <div className="relative z-10 max-w-4xl mx-auto space-y-10">
@@ -225,15 +321,24 @@ export default function SmileDesignPage() {
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-6 justify-center pt-8">
-                        <button className="bg-white text-neutral-900 px-10 py-5 rounded-full text-xl font-bold hover:bg-amber-400 hover:text-white transition-all shadow-2xl scale-100 hover:scale-105 duration-300">
+                        <Link
+                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20schedule%20an%20assessment%20for%20veneers."
+                            className="bg-white text-neutral-900 px-10 py-5 rounded-full text-xl font-bold hover:bg-amber-400 hover:text-white transition-all shadow-2xl scale-100 hover:scale-105 duration-300"
+                        >
                             Schedule assessment
-                        </button>
-                        <button className="bg-transparent border-2 border-white/20 text-white px-10 py-5 rounded-full text-xl font-medium hover:bg-white/10 transition-colors">
+                        </Link>
+                        <Link
+                            href="https://wa.me/529841145997"
+                            className="bg-transparent border-2 border-white/20 text-white px-10 py-5 rounded-full text-xl font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
+                        >
                             Direct WhatsApp
-                        </button>
-                        <button className="text-white underline hover:text-amber-400 transition-colors text-lg">
+                        </Link>
+                        <Link
+                            href="tel:+529841145997"
+                            className="text-white underline hover:text-amber-400 transition-colors text-lg flex items-center justify-center"
+                        >
                             Call now
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </section>

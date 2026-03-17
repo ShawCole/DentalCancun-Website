@@ -44,6 +44,7 @@ function CarouselVideoItem({
     onMuteToggle,
     onVideoEnded,
     onPlayingChange,
+    isNearActive,
 }: {
     video: VideoTestimonialData;
     isActive: boolean;
@@ -53,6 +54,7 @@ function CarouselVideoItem({
     onMuteToggle: (muted: boolean) => void;
     onVideoEnded: () => void;
     onPlayingChange?: (playing: boolean) => void;
+    isNearActive?: boolean;
 }) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isEngaged, setIsEngaged] = useState(false);
@@ -193,7 +195,7 @@ function CarouselVideoItem({
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload={isActive || isNearActive ? "auto" : "none"}
                 poster={video.poster}
                 className="absolute inset-0 h-full w-full object-cover z-10 transition-transform duration-700"
                 style={{
@@ -235,30 +237,30 @@ function CarouselVideoItem({
     );
 }
 
-// Static echo card — shows first frame only, no playback
+// Static echo card — shows poster image only, no video element
 // Used for Set A and Set C copies to fill the carousel visually
 function EchoVideoCard({ video }: { video: VideoTestimonialData }) {
-    const videoRef = useRef<HTMLVideoElement>(null);
-
-    // Seek to the start frame but don't play
-    useEffect(() => {
-        const el = videoRef.current;
-        if (!el) return;
-        el.currentTime = video.startTime ?? 0.1;
-    }, [video.startTime]);
-
     return (
         <div className="relative w-full h-full">
-            <video
-                ref={videoRef}
-                muted
-                playsInline
-                preload="auto"
-                className="absolute inset-0 h-full w-full object-cover z-10"
-                style={{ transform: `scale(${video.scale ?? 1})` }}
-            >
-                <source src={video.url} type="video/mp4" />
-            </video>
+            {video.poster ? (
+                <img
+                    src={video.poster}
+                    alt={video.name}
+                    className="absolute inset-0 h-full w-full object-cover z-10"
+                    style={{ transform: `scale(${video.scale ?? 1})` }}
+                    loading="lazy"
+                />
+            ) : (
+                <video
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 h-full w-full object-cover z-10"
+                    style={{ transform: `scale(${video.scale ?? 1})` }}
+                >
+                    <source src={`${video.url}#t=${video.startTime ?? 0.1}`} type="video/mp4" />
+                </video>
+            )}
 
             <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
 
@@ -464,6 +466,7 @@ export function VideoCarousel({
                                 <CarouselVideoItem
                                     video={video}
                                     isActive={isActive}
+                                    isNearActive={Math.abs(index - (itemCount + currentIndex)) <= 1}
                                     isUnlocked={isUnlocked}
                                     isMutedByUser={isMutedByUser}
                                     onUnlock={() => { setIsUnlocked(true); setIsMutedByUser(false); }}
