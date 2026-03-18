@@ -39,6 +39,9 @@ export default function SmileDesignPage() {
                         Get Your Dream Smile.<br />
                         <span className="text-[#D4AF37] italic">Fly Home Sunday.</span>
                     </h1>
+                    <p className="text-xl md:text-2xl text-white/90 font-bold tracking-wide uppercase">
+                        No-Prep Veneers. No Drilling. No Pain.
+                    </p>
                     <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed">
                         Boutique cosmetic dentistry by Dr.&nbsp;Carolina Aguirre,&nbsp;M.S. &mdash; 25&nbsp;years of precision, 15&nbsp;minutes from Cancun&nbsp;Airport.
                     </p>
@@ -94,7 +97,20 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
-            {/* 2. SCROLL TIMELINE: VIP Concierge */}
+            {/* 2. SAVINGS BANNER */}
+            <div className="py-10 bg-white border-b border-neutral-100">
+                <div className="container mx-auto px-4 max-w-4xl text-center">
+                    <p className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">Smart Investment</p>
+                    <p className="text-3xl md:text-4xl font-serif text-neutral-900">
+                        Save <span className="text-[#D4AF37] font-bold">60&ndash;70%</span> compared to the U.S.
+                    </p>
+                    <p className="text-neutral-500 mt-3 text-lg">
+                        Same premium materials. Same world-class results. A fraction of the price.
+                    </p>
+                </div>
+            </div>
+
+            {/* 3. SCROLL TIMELINE: VIP Concierge */}
             <VIPConcierge />
 
             {/* 3. MEET DR. CAROLINA */}
@@ -122,7 +138,7 @@ export default function SmileDesignPage() {
 
                         <div className="w-full md:w-3/5 space-y-6">
                             <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
-                                With over 30 years of specialization in aesthetic and cosmetic dentistry, Dr. Carolina has transformed thousands of smiles using the latest techniques in non-invasive and minimally invasive veneer treatments.
+                                With over 25 years of specialization in aesthetic and cosmetic dentistry, Dr. Carolina has transformed thousands of smiles using the latest techniques in non-invasive and minimally invasive veneer treatments.
                             </p>
                             <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
                                 Her passion for creating natural, beautiful smiles combined with her meticulous attention to detail has made her one of the most sought-after smile designers in Quintana Roo, Mexico.
@@ -131,7 +147,7 @@ export default function SmileDesignPage() {
                                 Dr. Carolina&apos;s expertise in working with premium German composites and her artistic approach to smile design ensures that every patient receives personalized, stunning results that enhance their natural beauty and boost their confidence.
                             </p>
                             <div className="flex flex-wrap gap-3 pt-2">
-                                {["30+ Years Experience", "Aesthetic Specialist", "Thousands of Smiles"].map((tag) => (
+                                {["25+ Years Experience", "Aesthetic Specialist", "Thousands of Smiles"].map((tag) => (
                                     <span key={tag} className="bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full">
                                         {tag}
                                     </span>
@@ -193,6 +209,17 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
+            {/* MID-PAGE CTA */}
+            <div className="py-16 bg-neutral-900 text-center px-4">
+                <p className="text-white/60 text-lg font-light mb-6">Ready to see what&apos;s possible?</p>
+                <Link
+                    href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
+                    className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
+                >
+                    Send Your Photos &rarr; Get Your Plan
+                </Link>
+            </div>
+
             {/* 5. DEFINITION */}
             <section className="py-24 bg-neutral-50 border-b border-neutral-100">
                 <div className="container mx-auto px-4 max-w-4xl text-center">
@@ -250,24 +277,27 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
-            {/* 8. PROCESS */}
+            {/* 8. TRUST & SAFETY */}
             <section className="py-24 bg-neutral-50">
-                <div className="container mx-auto px-4 max-w-4xl">
+                <div className="container mx-auto px-4 max-w-5xl">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-serif mb-4">The Process</h2>
-                        <div className="h-1 w-20 bg-amber-500 mx-auto" />
+                        <h2 className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">Peace of Mind</h2>
+                        <h3 className="text-3xl md:text-5xl font-serif text-neutral-900">Your Safety, Guaranteed</h3>
                     </div>
 
-                    <div className="space-y-8">
+                    <div className="grid md:grid-cols-2 gap-6">
                         {[
-                            { step: "01", title: "Clinical evaluation and digital analysis." },
-                            { step: "02", title: "Personalized smile design." },
-                            { step: "03", title: "Veneer fabrication in a specialized laboratory." },
-                            { step: "04", title: "Final adhesive bonding." }
+                            { icon: "🛡️", title: "FDA-Approved Materials", desc: "Every material used in your treatment meets FDA standards — the same brands and certifications required in top U.S. clinics." },
+                            { icon: "🧪", title: "Strict Sterilization Protocols", desc: "Hospital-grade sterilization procedures are followed for every instrument, every procedure, every patient. No exceptions." },
+                            { icon: "📝", title: "Written Guarantee", desc: "You receive a written guarantee on your veneers — your investment is protected from the moment you leave the chair." },
+                            { icon: "📞", title: "Post-Treatment Follow-Up", desc: "Your care doesn't end when you fly home. We provide follow-up support to ensure your smile stays perfect." },
                         ].map((item, i) => (
-                            <div key={i} className="flex items-center gap-6 bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <span className="text-4xl font-serif font-bold text-amber-200">{item.step}</span>
-                                <span className="text-xl font-medium text-neutral-800">{item.title}</span>
+                            <div key={i} className="flex gap-5 bg-white p-6 rounded-2xl border border-neutral-100 shadow-sm">
+                                <span className="text-3xl flex-shrink-0">{item.icon}</span>
+                                <div>
+                                    <h4 className="text-lg font-bold text-neutral-900 mb-1">{item.title}</h4>
+                                    <p className="text-neutral-600 text-sm leading-relaxed">{item.desc}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
