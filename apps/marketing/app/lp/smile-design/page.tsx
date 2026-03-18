@@ -98,13 +98,24 @@ export default function SmileDesignPage() {
             </section>
 
             {/* 2. SAVINGS BANNER */}
-            <div className="py-10 bg-white border-b border-neutral-100">
+            <div className="py-14 bg-white border-b border-neutral-100">
                 <div className="container mx-auto px-4 max-w-4xl text-center">
                     <p className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">Smart Investment</p>
                     <p className="text-3xl md:text-4xl font-serif text-neutral-900">
                         Save <span className="text-[#D4AF37] font-bold">60&ndash;70%</span> compared to the U.S.
                     </p>
-                    <p className="text-neutral-500 mt-3 text-lg">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-8">
+                        <div className="bg-neutral-100 rounded-xl px-8 py-5 text-center">
+                            <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-1">U.S. Price</p>
+                            <p className="text-2xl font-serif text-neutral-400 line-through">$20,000 &ndash; $40,000</p>
+                        </div>
+                        <span className="text-2xl text-[#D4AF37] font-bold hidden sm:block">&rarr;</span>
+                        <div className="bg-amber-50 border-2 border-[#D4AF37]/30 rounded-xl px-8 py-5 text-center">
+                            <p className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-1">Cancun Price</p>
+                            <p className="text-2xl font-serif font-bold text-neutral-900">$3,500 &ndash; $8,000</p>
+                        </div>
+                    </div>
+                    <p className="text-neutral-500 mt-6 text-lg">
                         Same premium materials. Same world-class results. A fraction of the price.
                     </p>
                 </div>
@@ -211,7 +222,7 @@ export default function SmileDesignPage() {
 
             {/* MID-PAGE CTA */}
             <div className="py-16 bg-neutral-900 text-center px-4">
-                <p className="text-white/60 text-lg font-light mb-6">Ready to see what&apos;s possible?</p>
+                <p className="text-white/60 text-2xl md:text-3xl font-serif mb-6">Ready to see what&apos;s possible?</p>
                 <Link
                     href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
                     className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
@@ -273,6 +284,15 @@ export default function SmileDesignPage() {
                             ))}
                         </div>
                         <p className="text-center text-white/40 text-sm mt-6">If any of these sound like you, send us your photos and we&apos;ll tell you exactly what&apos;s possible.</p>
+
+                        <div className="mt-10 text-center">
+                            <Link
+                                href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
+                                className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
+                            >
+                                Send Your Photos &rarr; Get Your Plan
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -280,17 +300,20 @@ export default function SmileDesignPage() {
             {/* 8. TRUST & SAFETY */}
             <section className="py-24 bg-neutral-50">
                 <div className="container mx-auto px-4 max-w-5xl">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-6">
                         <h2 className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">Peace of Mind</h2>
-                        <h3 className="text-3xl md:text-5xl font-serif text-neutral-900">Your Safety, Guaranteed</h3>
+                        <h3 className="text-3xl md:text-5xl font-serif text-neutral-900">Your Safety Is Our Priority &mdash;<br className="hidden md:block" /> From Start to Finish</h3>
                     </div>
+                    <p className="text-center text-neutral-500 text-lg max-w-2xl mx-auto mb-16">
+                        We know the biggest question isn&apos;t cost &mdash; it&apos;s trust. Here&apos;s how we protect every patient who travels to us.
+                    </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
                         {[
-                            { icon: "🛡️", title: "FDA-Approved Materials", desc: "Every material used in your treatment meets FDA standards — the same brands and certifications required in top U.S. clinics." },
-                            { icon: "🧪", title: "Strict Sterilization Protocols", desc: "Hospital-grade sterilization procedures are followed for every instrument, every procedure, every patient. No exceptions." },
-                            { icon: "📝", title: "Written Guarantee", desc: "You receive a written guarantee on your veneers — your investment is protected from the moment you leave the chair." },
-                            { icon: "📞", title: "Post-Treatment Follow-Up", desc: "Your care doesn't end when you fly home. We provide follow-up support to ensure your smile stays perfect." },
+                            { icon: "🛡️", title: "FDA-Approved Materials", desc: "We use the same FDA-approved brands and certifications required in top U.S. clinics. No substitutes, no compromises — identical materials to what your dentist at home would use." },
+                            { icon: "🧪", title: "International Sterilization Standards", desc: "Our clinic follows strict international sterilization protocols for every instrument, every procedure, every patient. Your safety is never negotiable." },
+                            { icon: "📝", title: "Written Guarantee on Every Treatment", desc: "Every patient receives a written guarantee on their veneers. Your investment is protected — we stand behind our work with full accountability." },
+                            { icon: "📞", title: "Continuous Follow-Up After You Return Home", desc: "Your care doesn't end when you board your flight. We provide ongoing follow-up support so you're never alone after treatment — even from thousands of miles away." },
                         ].map((item, i) => (
                             <div key={i} className="flex gap-5 bg-white p-6 rounded-2xl border border-neutral-100 shadow-sm">
                                 <span className="text-3xl flex-shrink-0">{item.icon}</span>
@@ -339,7 +362,37 @@ export default function SmileDesignPage() {
                 </div>
             </section>
 
-            {/* 10. CTA SECTION */}
+            {/* 10. ARE YOU A CANDIDATE? */}
+            <section className="py-24 bg-neutral-950 text-white">
+                <div className="container mx-auto px-4 max-w-3xl text-center">
+                    <h2 className="text-sm font-bold tracking-[0.2em] text-[#D4AF37] uppercase mb-3">The Right Fit</h2>
+                    <h3 className="text-3xl md:text-5xl font-serif mb-12">Are You a Candidate?</h3>
+
+                    <div className="space-y-6 text-left max-w-xl mx-auto">
+                        {[
+                            "You want a natural, aesthetic smile — not an obvious cosmetic look",
+                            "You\u2019re looking for high-quality treatment, not low-cost dentistry",
+                            "You\u2019re open to traveling for better results at a fraction of the price",
+                        ].map((item, i) => (
+                            <div key={i} className="flex items-start gap-4">
+                                <span className="text-[#D4AF37] text-xl mt-0.5">&#10003;</span>
+                                <p className="text-lg text-white/80 leading-relaxed">{item}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="mt-12">
+                        <Link
+                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
+                            className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
+                        >
+                            Send Your Photos &rarr; Get Your Plan
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* 11. CTA SECTION */}
             <section id="consultation" className="py-32 bg-neutral-900 text-white text-center px-4 relative overflow-hidden mb-[60px] md:mb-0">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
                 <div className="relative z-10 max-w-4xl mx-auto space-y-10">
