@@ -216,7 +216,7 @@ export default function SmileDesignPage() {
             {/* MID-PAGE CTA */}
             <div className="py-16 bg-neutral-900 text-center px-4">
                 <p className="text-white/60 text-2xl md:text-3xl font-serif mb-4">Ready to see what&apos;s possible?</p>
-                <p className="text-[#D4AF37]/80 text-sm font-bold uppercase tracking-widest mb-6">Limited openings each month &middot; April spots filling</p>
+                <p className="text-[#D4AF37]/80 text-sm font-bold uppercase tracking-widest mb-6">Limited openings each month &middot; Spots filling fast</p>
                 <Link
                     href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20a%20free%20smile%20assessment.%20No%20obligation."
                     className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
@@ -381,7 +381,7 @@ export default function SmileDesignPage() {
                             href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20check%20availability%20for%20a%20smile%20consultation."
                             className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
                         >
-                            Check April Availability
+                            Check Availability
                         </Link>
                         <p className="text-white/30 text-sm">Free assessment &middot; No commitment required</p>
                     </div>
