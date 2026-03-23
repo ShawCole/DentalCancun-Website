@@ -49,27 +49,20 @@ export default function SmileDesignPage() {
                     {/* CTAs */}
                     <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <Link
-                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
+                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20a%20free%20smile%20assessment.%20No%20obligation."
                             className="bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20 flex items-center gap-2"
                         >
-                            Send Your Photos &rarr; Get Your Plan
+                            See What&apos;s Possible &rarr; Free Assessment
                         </Link>
-                        <div className="flex gap-3">
-                            <Link
-                                href="https://wa.me/529841145997"
-                                className="bg-[#25D366] text-white px-6 py-4 rounded-full text-lg font-medium hover:bg-[#20bd5a] transition-all shadow-lg flex items-center gap-2"
-                            >
-                                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                                WhatsApp
-                            </Link>
-                            <Link
-                                href="tel:+529841145997"
-                                className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-all"
-                            >
-                                Call Now
-                            </Link>
-                        </div>
+                        <Link
+                            href="https://wa.me/529841145997"
+                            className="bg-[#25D366] text-white px-6 py-4 rounded-full text-lg font-medium hover:bg-[#20bd5a] transition-all shadow-lg flex items-center gap-2"
+                        >
+                            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            WhatsApp Us
+                        </Link>
                     </div>
+                    <p className="pt-3 text-white/40 text-sm tracking-wide">Free consultation &middot; No obligation &middot; Response within 24h</p>
                 </div>
 
                 {/* Trust bar */}
@@ -222,13 +215,15 @@ export default function SmileDesignPage() {
 
             {/* MID-PAGE CTA */}
             <div className="py-16 bg-neutral-900 text-center px-4">
-                <p className="text-white/60 text-2xl md:text-3xl font-serif mb-6">Ready to see what&apos;s possible?</p>
+                <p className="text-white/60 text-2xl md:text-3xl font-serif mb-4">Ready to see what&apos;s possible?</p>
+                <p className="text-[#D4AF37]/80 text-sm font-bold uppercase tracking-widest mb-6">Limited openings each month &middot; April spots filling</p>
                 <Link
-                    href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
+                    href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20a%20free%20smile%20assessment.%20No%20obligation."
                     className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
                 >
-                    Send Your Photos &rarr; Get Your Plan
+                    Get Your Free Assessment
                 </Link>
+                <p className="mt-3 text-white/30 text-sm">No obligation &middot; Takes 2 minutes</p>
             </div>
 
             {/* 5. DEFINITION */}
@@ -283,14 +278,14 @@ export default function SmileDesignPage() {
                                 </div>
                             ))}
                         </div>
-                        <p className="text-center text-white/40 text-sm mt-6">If any of these sound like you, send us your photos and we&apos;ll tell you exactly what&apos;s possible.</p>
+                        <p className="text-center text-white/40 text-sm mt-6">If any of these sound like you, find out what&apos;s possible &mdash; completely free.</p>
 
                         <div className="mt-10 text-center">
                             <Link
-                                href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
+                                href="https://wa.me/529841145997?text=Hi%2C%20I%20think%20I%20may%20be%20a%20candidate.%20Can%20I%20get%20a%20free%20assessment%3F"
                                 className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
                             >
-                                Send Your Photos &rarr; Get Your Plan
+                                Am I a Candidate? Find Out Free
                             </Link>
                         </div>
                     </div>
@@ -381,13 +376,14 @@ export default function SmileDesignPage() {
                         ))}
                     </div>
 
-                    <div className="mt-12">
+                    <div className="mt-12 space-y-3">
                         <Link
-                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20get%20a%20smile%20consultation.%20Here%20are%20my%20photos%3A"
+                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20check%20availability%20for%20a%20smile%20consultation."
                             className="inline-flex items-center gap-2 bg-[#D4AF37] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#c5a030] transition-all hover:scale-105 shadow-xl shadow-[#D4AF37]/20"
                         >
-                            Send Your Photos &rarr; Get Your Plan
+                            Check April Availability
                         </Link>
+                        <p className="text-white/30 text-sm">Free assessment &middot; No commitment required</p>
                     </div>
                 </div>
             </section>
@@ -397,30 +393,25 @@ export default function SmileDesignPage() {
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
                 <div className="relative z-10 max-w-4xl mx-auto space-y-10">
                     <h2 className="text-4xl md:text-6xl font-serif leading-tight">
-                        Schedule your personalized assessment and receive a treatment plan designed specifically for you.
+                        Your dream smile is one conversation away.
                     </h2>
-                    <p className="text-neutral-400 text-lg uppercase tracking-widest font-medium">
-                        Payment options | Financing plans available
+                    <p className="text-[#D4AF37]/80 text-sm font-bold uppercase tracking-widest">
+                        Limited openings each month &middot; Free assessment &middot; No obligation
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-6 justify-center pt-8">
                         <Link
-                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20schedule%20an%20assessment%20for%20veneers."
+                            href="https://wa.me/529841145997?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20free%20assessment%20for%20veneers."
                             className="bg-white text-neutral-900 px-10 py-5 rounded-full text-xl font-bold hover:bg-amber-400 hover:text-white transition-all shadow-2xl scale-100 hover:scale-105 duration-300"
                         >
-                            Schedule assessment
+                            Schedule Free Assessment
                         </Link>
                         <Link
                             href="https://wa.me/529841145997"
                             className="bg-transparent border-2 border-white/20 text-white px-10 py-5 rounded-full text-xl font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
                         >
-                            Direct WhatsApp
-                        </Link>
-                        <Link
-                            href="tel:+529841145997"
-                            className="text-white underline hover:text-amber-400 transition-colors text-lg flex items-center justify-center"
-                        >
-                            Call now
+                            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            WhatsApp Us Directly
                         </Link>
                     </div>
                 </div>

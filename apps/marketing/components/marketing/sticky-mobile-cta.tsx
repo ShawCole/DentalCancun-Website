@@ -10,13 +10,13 @@ export function StickyMobileCTA() {
                 href="https://wa.me/529841145997"
                 className="flex-1 bg-green-600 text-white py-4 rounded-full text-center font-bold text-lg active:scale-95 transition-transform"
             >
-                Direct WhatsApp
+                WhatsApp Us
             </Link>
             <Link
                 href="#consultation"
                 className="flex-1 bg-[#D4AF37] text-white py-4 rounded-full text-center font-bold text-lg active:scale-95 transition-transform shadow-lg shadow-[#D4AF37]/20"
             >
-                Check Availability
+                Free Assessment
             </Link>
         </div>
     );
