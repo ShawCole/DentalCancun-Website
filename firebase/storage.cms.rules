@@ -1,0 +1,12 @@
+// Reglas de Storage para las imágenes del administrador.
+// Agrégalas DENTRO de `match /b/{bucket}/o { ... }` sin borrar las existentes.
+// Requiere que Storage pueda leer Firestore (Firebase lo pide la primera vez que se publican).
+
+match /cms/{file} {
+  allow read: if true;
+  allow write: if request.auth != null
+    && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin'
+    && (request.resource == null
+        || (request.resource.size < 8 * 1024 * 1024
+            && request.resource.contentType.matches('image/.*')));
+}

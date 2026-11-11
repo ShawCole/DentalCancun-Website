@@ -1,0 +1,20 @@
+// Reglas para el administrador del sitio (CMS).
+// Agrégalas DENTRO del bloque `match /databases/{database}/documents { ... }`
+// de las reglas actuales del proyecto de Firebase. No borres las reglas existentes.
+
+function cmsIsAdmin() {
+  return request.auth != null &&
+    get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+}
+
+// Textos de las páginas: lectura pública (el sitio los muestra), escritura solo administradores.
+match /cms_pages/{pageId} {
+  allow read: if true;
+  allow write: if cmsIsAdmin();
+}
+
+// Biblioteca de imágenes: lectura pública, escritura solo administradores.
+match /cms_media/{mediaId} {
+  allow read: if true;
+  allow write: if cmsIsAdmin();
+}
