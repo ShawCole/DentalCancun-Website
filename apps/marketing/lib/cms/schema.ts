@@ -15,7 +15,7 @@ export interface FieldDef {
     label: string;
     type: FieldType;
     help?: string;
-    /** Same value for both languages (for example an image or a link). */
+    /** Same value for both languages (for example an image or a phone). */
     shared?: boolean;
     max?: number;
 }
@@ -34,73 +34,263 @@ export interface PageDef {
     sections: SectionDef[];
 }
 
+const EM = "Escribe entre *asteriscos* la palabra que va en cursiva.";
+
+const t = (id: string, label: string, extra: Partial<FieldDef> = {}): FieldDef => ({ id, label, type: "text", ...extra });
+const ta = (id: string, label: string, extra: Partial<FieldDef> = {}): FieldDef => ({ id, label, type: "textarea", ...extra });
+const img = (id: string, label: string): FieldDef => ({ id, label, type: "image", shared: true });
+const url = (id: string, label: string, shared = false): FieldDef => ({ id, label, type: "url", shared });
+
+/** Repeats a group of fields: item 1, item 2… (ids like c1_title). */
+function repeat(n: number, prefix: string, name: string, fields: FieldDef[]): FieldDef[] {
+    const out: FieldDef[] = [];
+    for (let i = 1; i <= n; i++) {
+        for (const f of fields) out.push({ ...f, id: `${prefix}${i}_${f.id}`, label: `${name} ${i} · ${f.label}` });
+    }
+    return out;
+}
+
 const seo: SectionDef = {
     id: "seo",
     label: "SEO (Google)",
-    fields: [
-        { id: "title", label: "Título para Google", type: "text", max: 60 },
-        { id: "description", label: "Descripción para Google", type: "textarea", max: 160 },
-    ],
+    fields: [t("title", "Título para Google", { max: 60 }), ta("description", "Descripción para Google", { max: 160 })],
 };
 
 export const PAGES: PageDef[] = [
     {
         id: "site",
-        label: "Datos generales del sitio",
-        path: { es: "/es", en: "/" },
+        label: "Datos generales, menú y pie de página",
+        path: { es: "/es", en: "/en" },
         sections: [
             {
                 id: "contact",
                 label: "Contacto",
                 fields: [
-                    { id: "whatsapp", label: "WhatsApp (solo números, con lada)", type: "text", shared: true },
-                    { id: "phone", label: "Teléfono visible", type: "text", shared: true },
-                    { id: "email", label: "Correo de contacto", type: "text", shared: true },
-                    { id: "address", label: "Dirección", type: "textarea" },
-                    { id: "hours", label: "Horario", type: "text" },
+                    t("whatsapp", "WhatsApp (solo números, con lada de país)", { shared: true, help: "Ejemplo: 529841145997" }),
+                    t("whatsappLabel", "WhatsApp como se muestra", { shared: true }),
+                    t("phone", "Teléfono como se muestra", { shared: true }),
+                    t("email", "Correo", { shared: true }),
+                    ta("address", "Dirección"),
+                    t("hours", "Horario"),
                 ],
             },
             {
                 id: "brand",
                 label: "Marca",
+                fields: [img("logo", "Logo"), t("concept", "Frase de marca")],
+            },
+            {
+                id: "header",
+                label: "Menú superior",
                 fields: [
-                    { id: "logo", label: "Logo", type: "image", shared: true },
-                    { id: "tagline", label: "Frase de marca", type: "text" },
+                    t("nav1", "Menú · Tratamientos"),
+                    t("nav2", "Menú · Concierge"),
+                    t("nav3", "Menú · Valoración virtual"),
+                    t("nav4", "Menú · Equipo médico"),
+                    t("nav5", "Menú · Testimonios"),
+                    t("nav6", "Menú · Garantía"),
+                    t("cta", "Botón del menú"),
+                ],
+            },
+            {
+                id: "footer",
+                label: "Pie de página",
+                fields: [
+                    t("addressTitle", "Título de la dirección"),
+                    t("contactTitle", "Título de contacto"),
+                    t("legalTitle", "Título legal"),
+                    t("privacy", "Enlace · Aviso de privacidad"),
+                    t("guarantee", "Enlace · Garantía"),
+                    t("deposits", "Enlace · Anticipos y cancelaciones"),
+                    ta("sanitary", "Leyenda sanitaria", { help: "Validar con el abogado de la clínica." }),
                 ],
             },
             {
                 id: "social",
                 label: "Redes sociales",
-                fields: [
-                    { id: "instagram", label: "Instagram (enlace)", type: "url", shared: true },
-                    { id: "facebook", label: "Facebook (enlace)", type: "url", shared: true },
-                    { id: "tiktok", label: "TikTok (enlace)", type: "url", shared: true },
-                ],
+                fields: [url("instagram", "Instagram", true), url("facebook", "Facebook", true), url("tiktok", "TikTok", true)],
             },
         ],
     },
     {
         id: "home",
         label: "Inicio",
-        path: { es: "/es", en: "/" },
+        path: { es: "/es", en: "/en" },
         sections: [
             {
                 id: "hero",
-                label: "Portada",
+                label: "01 · Portada",
                 fields: [
-                    { id: "title", label: "Título", type: "text" },
-                    { id: "highlight", label: "Título (parte destacada)", type: "text" },
-                    { id: "subtitle", label: "Subtítulo", type: "textarea" },
-                    { id: "cta", label: "Texto del botón", type: "text" },
-                    { id: "ctaUrl", label: "Enlace del botón", type: "url" },
-                    { id: "poster", label: "Imagen de fondo", type: "image", shared: true },
-                    { id: "video", label: "Video de fondo (enlace .mp4, opcional)", type: "url", shared: true },
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    ta("subtitle", "Bajada"),
+                    t("cta1", "Botón principal"),
+                    t("cta2", "Botón secundario"),
+                    t("concept", "Frase de marca"),
+                    img("image", "Imagen de fondo"),
+                    url("video", "Video «Ver la experiencia» (.mp4, opcional)", true),
+                    t("videoLabel", "Texto del botón de video"),
+                    img("caseImage", "Caso real · foto circular"),
+                    t("caseLabel", "Caso real · etiqueta"),
+                    t("caseTitle", "Caso real · título"),
+                    t("caseText", "Caso real · tratamiento"),
                 ],
+            },
+            {
+                id: "trust",
+                label: "02 · Barra de confianza",
+                fields: repeat(4, "t", "Dato", [t("value", "Dato"), t("detail", "Detalle")]),
+            },
+            {
+                id: "treatments",
+                label: "03 · Tratamientos",
+                fields: [
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    ta("note", "Nota"),
+                    t("more", "Texto de los enlaces"),
+                    ...repeat(6, "c", "Tarjeta", [t("group", "Grupo"), t("title", "Título"), ta("text", "Texto"), url("link", "Enlace")]),
+                ],
+            },
+            {
+                id: "quiz",
+                label: "04 · Quiz",
+                fields: [t("kicker", "Antetítulo"), t("title", "Título", { help: EM }), ta("text", "Bajada"), t("cta", "Botón"), url("ctaUrl", "Enlace del botón")],
+            },
+            {
+                id: "case",
+                label: "05 · Caso real",
+                fields: [
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    ta("story", "Historia"),
+                    img("after", "Foto después"),
+                    img("before", "Foto antes (circular)"),
+                    ...repeat(3, "d", "Dato", [t("label", "Etiqueta"), t("value", "Valor")]),
+                ],
+            },
+            {
+                id: "testimonials",
+                label: "06 · Testimonios",
+                fields: [
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    ta("note", "Nota"),
+                    ...repeat(3, "q", "Testimonio", [
+                        url("video", "Video vertical (.mp4)", true),
+                        img("poster", "Póster o foto 9:16"),
+                        t("quote", "Cita"),
+                        t("author", "Autor · país · tratamiento"),
+                    ]),
+                    ta("legal", "Aviso legal"),
+                ],
+            },
+            {
+                id: "team",
+                label: "07 · Equipo médico",
+                fields: [
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    ta("text", "Filosofía"),
+                    t("profile", "Perfil del equipo"),
+                    ta("credentials", "Formación y respaldo (una línea por renglón)"),
+                    img("image", "Foto"),
+                    t("badgeNumber", "Sello · número"),
+                    t("badgeText", "Sello · texto"),
+                ],
+            },
+            {
+                id: "members",
+                label: "08 · Integrantes del equipo",
+                fields: [
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    ...repeat(4, "m", "Integrante", [
+                        t("role", "Cargo o especialidad"),
+                        t("name", "Nombre (opcional)"),
+                        ta("text", "Descripción"),
+                        img("photo", "Foto (opcional)"),
+                    ]),
+                ],
+            },
+            {
+                id: "concierge",
+                label: "09 · Concierge",
+                fields: [
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    ta("text", "Bajada"),
+                    ...repeat(6, "s", "Paso", [t("title", "Título"), t("text", "Texto")]),
+                    t("cta", "Botón"),
+                    url("ctaUrl", "Enlace del botón"),
+                ],
+            },
+            {
+                id: "assessment",
+                label: "10 · Valoración virtual",
+                fields: [
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    t("uploadLabel", "Fotos · etiqueta"),
+                    t("uploadTitle", "Fotos · título"),
+                    ta("uploadText", "Fotos · texto"),
+                    t("uploadCta", "Fotos · botón de WhatsApp"),
+                    t("uploadMsg", "Fotos · mensaje prellenado de WhatsApp"),
+                    t("callLabel", "Videollamada · etiqueta"),
+                    t("callBadge", "Videollamada · distintivo"),
+                    t("callTitle", "Videollamada · título"),
+                    ta("callText", "Videollamada · texto"),
+                    t("callCta", "Videollamada · botón"),
+                    t("callMsg", "Videollamada · mensaje prellenado de WhatsApp"),
+                    ta("deposit", "Nota sobre el anticipo"),
+                ],
+            },
+            {
+                id: "guarantee",
+                label: "11 · Garantía",
+                fields: [
+                    t("kicker", "Antetítulo"),
+                    t("title", "Título", { help: EM }),
+                    ta("terms", "Condiciones"),
+                    t("cta", "Botón"),
+                    url("ctaUrl", "Enlace del botón"),
+                    ...repeat(3, "g", "Dato", [t("value", "Valor"), t("detail", "Detalle")]),
+                ],
+            },
+            {
+                id: "closing",
+                label: "12 · Cierre",
+                fields: [t("title", "Título", { help: EM }), t("cta1", "Botón principal"), t("cta2", "Botón quiz")],
             },
             seo,
         ],
     },
 ];
+
+PAGES.push({
+    id: "diagnostico",
+    label: "Diagnóstico digital (quiz)",
+    path: { es: "/es/diagnostico-digital", en: "/en/digital-assessment" },
+    sections: [
+        {
+            id: "intro",
+            label: "Introducción",
+            fields: [
+                t("kicker", "Antetítulo"),
+                t("title", "Título", { help: EM }),
+                ta("text", "Bajada"),
+                ...repeat(3, "p", "Punto", [t("title", "Título"), t("text", "Detalle")]),
+                ta("notice", "Aviso"),
+            ],
+        },
+        {
+            id: "closing",
+            label: "Cierre",
+            fields: [t("concept", "Frase de marca"), t("title", "Título", { help: EM }), t("cta", "Botón principal"), t("wa", "Botón de WhatsApp"), t("waMsg", "Mensaje prellenado de WhatsApp")],
+        },
+        seo,
+    ],
+});
 
 export function getPageDef(id: string): PageDef | undefined {
     return PAGES.find((p) => p.id === id);

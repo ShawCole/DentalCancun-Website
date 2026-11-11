@@ -11,9 +11,16 @@ textos y **Storage** para las imágenes.
 | Escritorio | Accesos rápidos. |
 | Páginas y textos | Edita cada página por secciones, con pestañas Español / English y campos de SEO. |
 | Imágenes | Sube, reutiliza y borra imágenes (máx. 8 MB, JPG/PNG/WebP/GIF/SVG). |
+| Diagnósticos (quiz) | Lista de pacientes que hicieron el quiz, con ruta sugerida, prioridad, estado y enlace a WhatsApp. |
 
-Páginas editables hoy: **Datos generales** (WhatsApp, teléfono, correo, dirección, horario, logo, redes)
-e **Inicio** (portada y SEO). La versión en español del inicio vive en `/es`.
+Páginas editables hoy (diseño «cristal boutique»):
+
+- **Datos generales, menú y pie de página**: WhatsApp, teléfono, correo, dirección, horario, logo, redes, leyenda sanitaria.
+- **Inicio** (`/es` y `/en`): las 12 secciones, cada una con sus textos e imágenes.
+- **Diagnóstico digital** (`/es/diagnostico-digital` y `/en/digital-assessment`), con el quiz «Diseña tu sonrisa».
+
+En los títulos, la palabra entre `*asteriscos*` se muestra en cursiva verde.
+Las páginas anteriores del sitio (`/`, `/lp/...`, `/vip`, etc.) siguen en `app/(legacy)` sin cambios de diseño.
 
 Al guardar, el sitio se actualiza en segundos (`/api/cms/revalidate`). Si Firebase no responde,
 el sitio muestra los textos por defecto de `lib/cms/defaults.ts`, así que nunca se cae.
@@ -24,7 +31,7 @@ el sitio muestra los textos por defecto de `lib/cms/defaults.ts`, así que nunca
    `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`,
    `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID`.
    Para el build del monorepo, también `APP_NAME=marketing`. No hace falta la llave de servicio para el panel.
-2. **Reglas de seguridad**: agrega el contenido de `firebase/firestore.cms.rules` y `firebase/storage.cms.rules`
+2. **Reglas de seguridad** (incluyen las de los diagnósticos del quiz, colección `leads`): agrega el contenido de `firebase/firestore.cms.rules` y `firebase/storage.cms.rules`
    a las reglas actuales del proyecto (Firebase Console → Firestore → Reglas, y Storage → Reglas). No borres las existentes.
 3. **Storage**: actívalo en Firebase Console si aún no está activo.
 4. **Usuario administrador**: en Authentication crea el usuario (correo y contraseña). Luego en

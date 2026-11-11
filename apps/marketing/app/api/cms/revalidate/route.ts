@@ -34,6 +34,9 @@ export async function POST(req: NextRequest) {
 
     revalidateTag(cmsTag(def.id));
     // Site-wide data (contact, logo) appears on every page.
-    if (def.id === "site") revalidatePath("/", "layout");
+    if (def.id === "site") {
+        revalidatePath("/es", "layout");
+        revalidatePath("/en", "layout");
+    }
     return NextResponse.json({ ok: true });
 }

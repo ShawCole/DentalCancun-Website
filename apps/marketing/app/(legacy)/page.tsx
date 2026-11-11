@@ -4,17 +4,7 @@ import { useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-export interface HomeHero {
-    title: string;
-    highlight: string;
-    subtitle: string;
-    cta: string;
-    ctaUrl: string;
-    poster: string;
-    video: string;
-}
-
-export function HomePage({ hero }: { hero: HomeHero }) {
+export default function RedesignHome() {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -39,23 +29,24 @@ export function HomePage({ hero }: { hero: HomeHero }) {
                         loop
                         playsInline
                         className="h-full w-full object-cover brightness-[0.6]"
-                        poster={hero.poster}
+                        poster="/redesign/PHOTO-2025-12-17-21-07-18.jpg"
                     >
-                        {hero.video && <source src={hero.video} type="video/mp4" />}
+                        <source src="https://storage.googleapis.com/msgsndr/f0ZNnBBOAnxnYbXCHsB5/media/69209581ec01c107be9e5f7a.mp4" type="video/mp4" />
                     </video>
                 </div>
                 <div className="relative z-10 flex h-full items-center justify-center px-6">
                     <div className="max-w-4xl text-center">
                         <h1 className="mb-6 animate-fade-up text-5xl font-serif font-extrabold text-white md:text-7xl">
-                            {hero.title} <br />
-                            <span className="text-gold italic">{hero.highlight}</span>
+                            Luxury Cosmetic <br />
+                            <span className="text-gold italic">Dentistry in Cancun</span>
                         </h1>
                         <p className="mb-10 animate-fade-up text-lg text-white/90 md:text-xl font-light tracking-wide delay-100">
-                            {hero.subtitle}
+                            Trusted by international patients seeking precision, <br className="hidden md:block" />
+                            ethics, and long-term aesthetic results.
                         </p>
                         <div className="flex flex-col items-center justify-center gap-4 animate-fade-up sm:flex-row delay-200">
-                            <a href={hero.ctaUrl || "/schedule"} className="rounded-full bg-gold px-10 py-4 text-lg font-bold text-white shadow-xl hover:bg-white hover:text-gold transition-all duration-300 transform hover:scale-105">
-                                {hero.cta}
+                            <a href="/schedule" className="rounded-full bg-gold px-10 py-4 text-lg font-bold text-white shadow-xl hover:bg-white hover:text-gold transition-all duration-300 transform hover:scale-105">
+                                Book a Consultation
                             </a>
                         </div>
                     </div>

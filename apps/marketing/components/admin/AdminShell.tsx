@@ -9,6 +9,7 @@ const NAV = [
     { href: "/admin", label: "Escritorio", icon: "M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z" },
     { href: "/admin/paginas", label: "Páginas y textos", icon: "M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7" },
     { href: "/admin/medios", label: "Imágenes", icon: "M3 4h18v16H3zM21 16l-5-5-9 9M9 10a2 2 0 1 0 0-.01" },
+    { href: "/admin/diagnosticos", label: "Diagnósticos (quiz)", icon: "M4 5h16v11H8l-4 4z" },
 ];
 
 export function AdminShell({ children }: { children: ReactNode }) {
@@ -68,11 +69,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
                         </li>
                     ))}
                 </ul>
-                <p className="px-3 text-xs text-[#C9D6CF]">Próximamente: agenda, diagnósticos, testimonios en video y módulos.</p>
+                <p className="px-3 text-xs text-[#C9D6CF]">Próximamente: agenda con Google Calendar, testimonios en video y módulos.</p>
                 <div className="mt-auto border-t border-white/20 px-2 pt-4 text-sm">
                     <p className="font-semibold">{profile?.displayName || user.email}</p>
                     <div className="mt-2 flex gap-4">
-                        <a href="/" target="_blank" rel="noreferrer" className="text-[#D9C28F] underline">Ver sitio</a>
+                        <a href="/es" target="_blank" rel="noreferrer" className="text-[#D9C28F] underline">Ver sitio</a>
                         <button onClick={signOut} className="text-[#D9C28F] underline">Salir</button>
                     </div>
                 </div>

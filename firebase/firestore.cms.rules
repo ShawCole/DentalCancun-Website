@@ -18,3 +18,18 @@ match /cms_media/{mediaId} {
   allow read: if true;
   allow write: if cmsIsAdmin();
 }
+
+// Diagnósticos del quiz: cualquiera puede crear uno (sin leer nada); solo admin y recepción los ven.
+match /leads/{leadId} {
+  allow create: if request.resource.data.keys().hasOnly([
+      'nombre','whatsapp','correo','pais','idioma','necesidad','tratamiento','alternativa','tipo',
+      'viaje','agenda','prioridad','regla','notas','ruta','pagina','estado','privacidad','createdAt'])
+    && request.resource.data.privacidad == true
+    && request.resource.data.estado == 'nuevo'
+    && request.resource.data.nombre is string && request.resource.data.nombre.size() < 120
+    && request.resource.data.whatsapp is string && request.resource.data.whatsapp.size() < 40
+    && request.resource.data.ruta is string && request.resource.data.ruta.size() < 5000;
+  allow read, update: if request.auth != null
+    && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'staff'];
+  allow delete: if cmsIsAdmin();
+}
