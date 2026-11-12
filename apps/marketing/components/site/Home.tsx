@@ -13,7 +13,7 @@ const items = (s: SectionValues = {}, prefix: string, n: number, key: string) =>
     Array.from({ length: n }, (_, i) => i + 1).filter((i) => filled(s[`${prefix}${i}_${key}`]));
 
 const container = "mx-auto w-full max-w-[1320px] px-5 md:px-8";
-const h2 = "font-serif text-4xl font-semibold leading-[1.08] text-grafito md:text-5xl";
+const h2 = "font-serif text-[2.4rem] font-medium leading-[1.05] text-grafito md:text-[3.6rem]";
 
 export function Home({ lang, c, site }: Props) {
     const wa = site.contact?.whatsapp || "";
@@ -23,33 +23,48 @@ export function Home({ lang, c, site }: Props) {
     return (
         <>
             {/* 01 · Portada */}
-            <section className="relative -mt-[76px] overflow-hidden bg-champana pb-16 pt-32 md:pb-24 md:pt-40" style={hero.image ? { backgroundImage: `url(${hero.image})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
-                <div className={`${container} grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]`}>
-                    <div className="glass rounded-[32px] p-7 md:p-12">
-                        <Kicker>{hero.kicker}</Kicker>
-                        <Rich as="h1" text={hero.title} className="block font-serif text-[2.6rem] font-semibold leading-[1.04] md:text-6xl" />
-                        <p className="mt-6 max-w-xl text-base leading-relaxed text-gris md:text-lg">{hero.subtitle}</p>
-                        <div className="mt-8 flex flex-wrap gap-3">
-                            <Button href="#valoracion">{hero.cta1} →</Button>
-                            <Button href="#valoracion" variant="ghost">{hero.cta2}</Button>
-                        </div>
-                        {filled(hero.concept) && <p className="mt-8 border-t border-dorado/40 pt-5 font-serif text-xl italic text-verde">{hero.concept}</p>}
-                    </div>
-                    <div className="flex flex-col items-start gap-5 lg:items-end">
-                        {filled(hero.video) && <VideoButton src={hero.video} label={hero.videoLabel} closeLabel={es ? "Cerrar" : "Close"} />}
-                        {filled(hero.caseTitle) && (
-                            <div className="glass flex max-w-md items-center gap-4 rounded-[28px] p-4">
-                                {filled(hero.caseImage) && (
-                                    // eslint-disable-next-line @next/next/no-img-element
-                                    <img src={hero.caseImage} alt="" className="h-20 w-20 shrink-0 rounded-full border-2 border-white object-cover" />
-                                )}
-                                <div>
-                                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-dorado-texto">{hero.caseLabel}</p>
-                                    <p className="font-serif text-xl font-semibold leading-snug">{hero.caseTitle}</p>
-                                    <p className="text-sm text-gris">{hero.caseText}</p>
-                                </div>
+            <section className="-mt-[76px] px-3 pb-12 pt-[88px] md:px-6 md:pb-16">
+                <div
+                    className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[36px] bg-champana"
+                    style={hero.image ? { backgroundImage: `url(${hero.image})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
+                >
+                    <div className="grid items-center gap-8 px-4 py-10 md:px-10 md:py-14 lg:grid-cols-[1.1fr_0.9fr]">
+                        <div className="glass rounded-[30px] p-7 md:p-11">
+                            <Kicker>{hero.kicker}</Kicker>
+                            <h1>
+                                <span className="block font-display text-[3.4rem] leading-[0.98] text-grafito md:text-[5.6rem]">{hero.headline}</span>
+                                <Rich text={hero.title} className="mt-4 block font-narrow text-[1.65rem] leading-[1.15] text-grafito md:text-[2.3rem]" />
+                            </h1>
+                            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-gris md:text-base">{hero.subtitle}</p>
+                            <div className="mt-7 flex flex-wrap gap-3">
+                                <Button href="#valoracion">{hero.cta1} →</Button>
+                                <Button href="#valoracion" variant="ghost">{hero.cta2}</Button>
                             </div>
-                        )}
+                        </div>
+                        <div className="relative mx-auto w-full max-w-[340px] lg:mr-6">
+                            {filled(hero.photo) && (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={hero.photo} alt={hero.caseTitle || ""} className="aspect-[4/5] w-full rounded-[28px] border-4 border-white/70 object-cover shadow-2xl" />
+                            )}
+                            {filled(hero.video) && (
+                                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                                    <VideoButton src={hero.video} label={hero.videoLabel} closeLabel={es ? "Cerrar" : "Close"} />
+                                </div>
+                            )}
+                            {filled(hero.caseTitle) && (
+                                <div className="glass relative -mt-12 mx-3 flex items-center gap-3 rounded-[22px] p-3">
+                                    {filled(hero.caseImage) && (
+                                        // eslint-disable-next-line @next/next/no-img-element
+                                        <img src={hero.caseImage} alt="" className="h-14 w-14 shrink-0 rounded-full border-2 border-white object-cover" />
+                                    )}
+                                    <div>
+                                        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-dorado-texto">{hero.caseLabel}</p>
+                                        <p className="font-serif text-lg font-semibold leading-snug">{hero.caseTitle}</p>
+                                        {filled(hero.caseText) && <p className="text-xs text-gris">{hero.caseText}</p>}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -107,7 +122,7 @@ export function Home({ lang, c, site }: Props) {
                             </a>
                         )}
                     </div>
-                    <Quiz lang={lang} whatsapp={wa} />
+                    <div data-quiz-root={lang} data-wa={wa} className="min-w-0"><Quiz lang={lang} whatsapp={wa} /></div>
                 </div>
             </section>
 

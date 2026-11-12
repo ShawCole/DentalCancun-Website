@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Cormorant_Garamond, DM_Serif_Display, Manrope, PT_Sans_Narrow } from "next/font/google";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import "../site.css";
@@ -9,6 +9,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 
 const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["500", "600"], style: ["normal", "italic"] });
+const dmSerif = DM_Serif_Display({ variable: "--font-dmserif", subsets: ["latin"], weight: "400" });
+const ptNarrow = PT_Sans_Narrow({ variable: "--font-ptnarrow", subsets: ["latin"], weight: ["400", "700"] });
 const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], weight: ["400", "600", "700"] });
 
 export const dynamicParams = false;
@@ -44,7 +46,7 @@ export default async function SiteLayout({ children, params }: { children: React
                 </Script>
                 <Script src="https://cdn.idpixel.app/v1/idp-analytics-69dd28d658b55f8c5c273805.min.js" strategy="afterInteractive" />
             </head>
-            <body className={`${cormorant.variable} ${manrope.variable} bg-marfil font-sans text-grafito antialiased`}>
+            <body className={`${cormorant.variable} ${dmSerif.variable} ${ptNarrow.variable} ${manrope.variable} bg-marfil font-sans text-grafito antialiased`}>
                 <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-verde focus:px-4 focus:py-2 focus:text-marfil">
                     {lang === "es" ? "Saltar al contenido" : "Skip to content"}
                 </a>

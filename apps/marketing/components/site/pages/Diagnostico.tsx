@@ -31,7 +31,7 @@ export function Diagnostico({ lang, c, site }: { lang: Lang; c: PageContent; sit
                         </ol>
                         <p className="mt-8 border-l-2 border-dorado pl-4 text-xs leading-relaxed text-gris">{intro.notice}</p>
                     </div>
-                    <Quiz lang={lang} whatsapp={wa} />
+                    <div data-quiz-root={lang} data-wa={wa} className="min-w-0"><Quiz lang={lang} whatsapp={wa} /></div>
                 </div>
             </section>
             <section className="on-dark bg-verde-osc py-20 text-center text-marfil">

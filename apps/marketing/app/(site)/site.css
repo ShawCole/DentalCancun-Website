@@ -13,6 +13,8 @@
   --color-gris: #5C564D;
   --font-serif: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-display: var(--font-dmserif), Georgia, serif;
+  --font-narrow: var(--font-ptnarrow), "Arial Narrow", sans-serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -35,6 +37,7 @@ body { background: #F6F3ED; color: #252525; -webkit-font-smoothing: antialiased;
 
 /* Palabra en cursiva de los titulares */
 .rich em { font-style: italic; color: #153D32; }
+.font-narrow.rich em { font-family: var(--font-ptnarrow), "Arial Narrow", sans-serif; color: #252525; }
 .on-dark .rich em { color: #D9C28F; }
 
 a:focus-visible, button:focus-visible, summary:focus-visible {

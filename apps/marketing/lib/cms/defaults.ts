@@ -71,7 +71,7 @@ export const DEFAULTS: Record<string, PageDoc> = {
 
     home: {
         shared: {
-            hero: { image: "/dsc/fondo-cristal-marfil.jpg", caseImage: "/dsc/caso-antes.jpg", video: "" },
+            hero: { image: "/dsc/fondo-cristal-clinica.jpg", photo: "/dsc/testimonio-3-paciente.jpg", caseImage: "/dsc/caso-antes.jpg", video: "" },
             case: { after: "/dsc/hero-caso.jpg", before: "" },
             testimonials: {
                 q1_video: "/dsc/testimonio-1.mp4",
@@ -87,6 +87,7 @@ export const DEFAULTS: Record<string, PageDoc> = {
         es: {
             hero: {
                 kicker: "Clínica dental boutique · Puerto Cancún",
+                headline: "Sonríele a la vida.",
                 title: "Tu sonrisa merece *criterio*, precisión y un plan hecho para ti.",
                 subtitle: "Alta estética dental, rehabilitación oral e implantología en una sola clínica, con atención privada y personalizada para pacientes locales e internacionales.",
                 cta1: "Solicitar valoración",
@@ -95,7 +96,7 @@ export const DEFAULTS: Record<string, PageDoc> = {
                 videoLabel: "Ver la experiencia",
                 caseLabel: "Caso real",
                 caseTitle: "Su sonrisa cambió, su confianza también.",
-                caseText: "[PENDIENTE: tratamiento realizado]",
+                caseText: "",
             },
             trust: {
                 t1_value: "25 años",
@@ -253,6 +254,7 @@ export const DEFAULTS: Record<string, PageDoc> = {
         en: {
             hero: {
                 kicker: "Boutique dental clinic · Puerto Cancún",
+                headline: "Smile at life.",
                 title: "Your smile deserves *judgment*, precision and a plan made for you.",
                 subtitle: "Aesthetic dentistry, full-mouth rehabilitation and implants in one clinic, with private, personalized care for local and international patients.",
                 cta1: "Request a consultation",
@@ -261,7 +263,7 @@ export const DEFAULTS: Record<string, PageDoc> = {
                 videoLabel: "See the experience",
                 caseLabel: "Real case",
                 caseTitle: "Their smile changed, and so did their confidence.",
-                caseText: "[PENDIENTE: treatment performed]",
+                caseText: "",
             },
             trust: {
                 t1_value: "25 years",
