@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import { Turnstile } from "./Turnstile";
 import type { Lang, SectionValues } from "@/lib/cms/schema";
 
 type View = "menu" | "type" | "slots" | "form" | "done";
@@ -89,7 +90,7 @@ export function Concierge({ lang, whatsapp, phone, panel, booking }: Props) {
     const [slot, setSlot] = useState<number | null>(null);
     const [msg, setMsg] = useState("");
     const [busy, setBusy] = useState(false);
-    const [done, setDone] = useState<{ when: string; name: string } | null>(null);
+    const [done, setDone] = useState<{ when: string; name: string; payUrl?: string; depositUsd?: number; manage?: string } | null>(null);
     const heading = useRef<HTMLHeadingElement>(null);
     const opener = useRef<HTMLElement | null>(null);
 
@@ -163,7 +164,7 @@ export function Concierge({ lang, whatsapp, phone, panel, booking }: Props) {
             const r = await fetch("/api/agenda/book", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ tipo, ts: slot, nombre: v("nombre"), correo: v("correo"), whatsapp: v("whatsapp"), pais: v("pais"), notas: v("notas"), empresa: v("empresa"), privacidad: true, idioma: lang }),
+                body: JSON.stringify({ tipo, ts: slot, nombre: v("nombre"), correo: v("correo"), whatsapp: v("whatsapp"), pais: v("pais"), notas: v("notas"), empresa: v("empresa"), privacidad: true, idioma: lang, turnstile: v("cf-turnstile-response") }),
             });
             const j = await r.json();
             if (r.status === 409) {
@@ -172,7 +173,7 @@ export function Concierge({ lang, whatsapp, phone, panel, booking }: Props) {
                 load(tipo);
             } else if (!j.ok) setMsg(t.error);
             else {
-                setDone({ when: j.when, name: v("nombre").split(" ")[0] });
+                setDone({ when: j.when, name: v("nombre").split(" ")[0], payUrl: j.payUrl, depositUsd: j.depositUsd, manage: j.manage });
                 setView("done");
                 try {
                     (window as unknown as { dataLayer?: unknown[] }).dataLayer?.push({ event: "dsc_cita", tipo });
@@ -348,6 +349,7 @@ export function Concierge({ lang, whatsapp, phone, panel, booking }: Props) {
                                             <a href={t.privacyUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-verde underline">{t.privacy}</a>.
                                         </span>
                                     </label>
+                                    <Turnstile lang={lang} />
                                     {msg && <p role="alert" className="text-sm font-semibold text-[#8A1F1F]">{msg}</p>}
                                     <button type="submit" disabled={busy} className="min-h-12 rounded-full bg-verde px-6 font-bold text-marfil disabled:opacity-60">{busy ? t.sending : t.send}</button>
                                     <button type="button" onClick={() => setView("slots")} className="self-start text-sm font-semibold text-verde">{t.back}</button>
@@ -366,6 +368,16 @@ export function Concierge({ lang, whatsapp, phone, panel, booking }: Props) {
                                     >
                                         {t.confirm}
                                     </a>
+                                    {done.payUrl && (
+                                        <a href={done.payUrl} className="inline-flex min-h-12 items-center justify-center rounded-full border border-verde px-6 font-bold text-verde">
+                                            {lang === "es" ? `Pagar anticipo · USD ${done.depositUsd}` : `Pay the deposit · USD ${done.depositUsd}`}
+                                        </a>
+                                    )}
+                                    {done.manage && (
+                                        <a href={done.manage} className="text-sm font-semibold text-verde underline">
+                                            {lang === "es" ? "Cambiar o cancelar mi cita" : "Reschedule or cancel"}
+                                        </a>
+                                    )}
                                 </div>
                             )}
                         </div>

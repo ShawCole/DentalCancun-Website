@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useState } from "react";
+import { Turnstile } from "./Turnstile";
 import type { Lang, SectionValues } from "@/lib/cms/schema";
 
 const L = {
@@ -92,7 +93,7 @@ export function PhotoForm({ lang, c, whatsapp }: { lang: Lang; c: SectionValues;
         setMsg("");
         try {
             const body = new FormData();
-            for (const k of ["nombre", "correo", "whatsapp", "pais", "necesidad", "empresa"]) body.set(k, v(k));
+            for (const k of ["nombre", "correo", "whatsapp", "pais", "necesidad", "empresa", "cf-turnstile-response"]) body.set(k, v(k));
             body.set("privacidad", "1");
             body.set("idioma", lang);
             for (const [i, file] of files.entries()) if (file) body.set(`foto_${i + 1}`, await shrink(file), `foto-${i + 1}.jpg`);
@@ -171,6 +172,7 @@ export function PhotoForm({ lang, c, whatsapp }: { lang: Lang; c: SectionValues;
                 <input type="checkbox" name="privacidad" className="mt-1 h-5 w-5 accent-[#153D32]" />
                 <span>{t.privacyPre}<a href={t.privacyUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-verde underline">{t.privacy}</a>{t.privacyPost}</span>
             </label>
+            <Turnstile lang={lang} />
             {msg && <p role="alert" className="text-sm font-semibold text-[#8A1F1F]">{msg}</p>}
             <button type="submit" disabled={busy} className="min-h-12 rounded-full bg-verde px-6 font-bold text-marfil disabled:opacity-60">{busy ? t.sending : c.submit}</button>
             <a href={waHref} target="_blank" rel="noopener noreferrer" className="text-center text-sm font-semibold text-verde underline">{t.wa}</a>

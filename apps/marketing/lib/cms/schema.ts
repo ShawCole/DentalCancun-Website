@@ -343,6 +343,8 @@ PAGES.push({
                 t("noticeMin", "Anticipación mínima (minutos)", { shared: true }),
                 t("windowDays", "Días visibles hacia adelante", { shared: true }),
                 ta("blocked", "Fechas bloqueadas (AAAA-MM-DD, una por renglón)", { shared: true }),
+                t("depositUsd", "Anticipo en línea (USD). Vacío o 0 = sin cobro en línea", { shared: true }),
+                t("depositFor", "¿A qué citas se cobra? (clinica o ambas)", { shared: true }),
             ],
         },
         {

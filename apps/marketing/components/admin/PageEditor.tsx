@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { loadPage, savePage } from "@/lib/cms/client";
+import { listVersions, loadPage, savePage, type Version } from "@/lib/cms/client";
+import { defaultDoc, mergeDoc } from "@/lib/cms/content";
+import { translateDraft } from "@/lib/ai/client";
 import { FieldDef, getPageDef, Lang, LANG_LABEL, LANGS, PageDoc } from "@/lib/cms/schema";
 import { ImageField } from "./ImageField";
 
@@ -12,7 +14,10 @@ export function PageEditor({ pageId }: { pageId: string }) {
     const [saved, setSaved] = useState<string>("");
     const [section, setSection] = useState(def.sections[0].id);
     const [lang, setLang] = useState<Lang>("es");
-    const [status, setStatus] = useState<{ kind: "idle" | "saving" | "ok" | "error"; msg?: string }>({ kind: "idle" });
+    const [status, setStatus] = useState<{ kind: "idle" | "saving" | "ok" | "error" | "warn"; msg?: string }>({ kind: "idle" });
+    const [versions, setVersions] = useState<Version[] | null>(null);
+    const [showHistory, setShowHistory] = useState(false);
+    const [translating, setTranslating] = useState(false);
 
     useEffect(() => {
         loadPage(pageId)
@@ -64,6 +69,41 @@ export function PageEditor({ pageId }: { pageId: string }) {
         }
     }
 
+    async function openHistory() {
+        setShowHistory(true);
+        setVersions(null);
+        try {
+            setVersions(await listVersions("page", pageId));
+        } catch (e: unknown) {
+            setVersions([]);
+            setStatus({ kind: "error", msg: e instanceof Error ? e.message : "No se pudo cargar el historial." });
+        }
+    }
+
+    function restore(v: Version) {
+        setDoc(mergeDoc(defaultDoc(pageId), JSON.parse(v.data)));
+        setShowHistory(false);
+        setStatus({ kind: "warn", msg: "Versión cargada en el editor. Revísala y pulsa «Guardar y publicar» para que aparezca en el sitio." });
+    }
+
+    /** Fills the English fields of this section with an AI draft from the Spanish text. */
+    async function suggestEnglish() {
+        if (!doc) return;
+        setTranslating(true);
+        try {
+            const src: Record<string, string> = {};
+            for (const f of sec.fields) if (!f.shared && f.type !== "image" && f.type !== "url") src[f.id] = doc.es[section]?.[f.id] || "";
+            const out = await translateDraft(src, `Página «${def.label}», sección «${sec.label}» del sitio de una clínica dental en Cancún`);
+            setDoc((d) => (d ? { ...d, en: { ...d.en, [section]: { ...(d.en[section] || {}), ...out } } } : d));
+            setLang("en");
+            setStatus({ kind: "warn", msg: "Borrador de IA cargado en inglés. Revisa cada texto (tono, datos, promesas) antes de guardar." });
+        } catch (e: unknown) {
+            setStatus({ kind: "error", msg: e instanceof Error ? e.message : "No se pudo traducir." });
+        } finally {
+            setTranslating(false);
+        }
+    }
+
     const missingEn = doc
         ? def.sections.some((s) => s.fields.some((f) => !f.shared && (doc.es[s.id]?.[f.id] || "") && !(doc.en[s.id]?.[f.id] || "")))
         : false;
@@ -84,6 +124,9 @@ export function PageEditor({ pageId }: { pageId: string }) {
                             {doc.updatedBy ? ` · ${doc.updatedBy}` : ""}
                         </span>
                     )}
+                    <button type="button" onClick={openHistory} className="inline-flex min-h-11 items-center rounded-lg border border-[#CFC5B3] bg-white px-4 text-sm font-semibold">
+                        Historial
+                    </button>
                     <a href={lang === "es" ? def.path.es : def.path.en} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-lg border border-[#CFC5B3] bg-white px-4 text-sm font-semibold">
                         Ver página
                     </a>
@@ -98,7 +141,7 @@ export function PageEditor({ pageId }: { pageId: string }) {
             </header>
 
             {status.msg && (
-                <p role="status" className={`rounded-xl px-4 py-3 text-sm ${status.kind === "error" ? "bg-[#FDECEC] text-[#8A1F1F]" : "bg-[#E3EFE6] text-[#1F5A36]"}`}>
+                <p role="status" className={`rounded-xl px-4 py-3 text-sm ${status.kind === "error" ? "bg-[#FDECEC] text-[#8A1F1F]" : status.kind === "warn" ? "bg-[#FBEFD5] text-[#6B4500]" : "bg-[#E3EFE6] text-[#1F5A36]"}`}>
                     {status.msg}
                 </p>
             )}
@@ -145,9 +188,43 @@ export function PageEditor({ pageId }: { pageId: string }) {
                             )}
                         </div>
 
+                        {hasTranslatable && (
+                            <button type="button" onClick={suggestEnglish} disabled={translating} className="self-start text-sm font-semibold text-[#153D32] underline disabled:opacity-50">
+                                {translating ? "Generando borrador en inglés…" : "Sugerir inglés de esta sección con IA (borrador)"}
+                            </button>
+                        )}
+
                         {sec.fields.map((f) => (
                             <Field key={`${section}-${f.id}-${f.shared ? "s" : lang}`} def={f} value={value(f)} onChange={(v) => update(f, v)} lang={lang} />
                         ))}
+                    </div>
+                </div>
+            )}
+
+            {showHistory && (
+                <div role="dialog" aria-modal="true" aria-labelledby="hist-title" className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={(e) => e.target === e.currentTarget && setShowHistory(false)}>
+                    <div className="flex max-h-[85vh] w-full max-w-lg flex-col gap-4 overflow-y-auto rounded-2xl bg-[#F6F3ED] p-5">
+                        <div className="flex items-center justify-between">
+                            <h2 id="hist-title" className="font-serif text-2xl font-semibold text-[#153D32]">Historial de cambios</h2>
+                            <button type="button" onClick={() => setShowHistory(false)} className="min-h-11 rounded-lg border border-[#CFC5B3] bg-white px-4 text-sm font-semibold">Cerrar</button>
+                        </div>
+                        {!versions ? (
+                            <p className="text-sm text-[#5C564D]">Cargando…</p>
+                        ) : versions.length === 0 ? (
+                            <p className="text-sm text-[#5C564D]">Aún no hay versiones guardadas de esta página.</p>
+                        ) : (
+                            <ul className="flex flex-col gap-2">
+                                {versions.map((v) => (
+                                    <li key={v.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-white p-3 text-sm">
+                                        <span>
+                                            <strong>{v.createdAt?.toDate().toLocaleString("es-MX") || "—"}</strong>
+                                            <span className="block text-xs text-[#5C564D]">{v.updatedBy}</span>
+                                        </span>
+                                        <button type="button" onClick={() => restore(v)} className="min-h-11 rounded-lg border border-[#153D32] px-3 font-semibold text-[#153D32]">Restaurar</button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 </div>
             )}

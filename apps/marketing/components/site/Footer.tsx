@@ -1,5 +1,6 @@
 import type { Lang, PageContent } from "@/lib/cms/schema";
 import { filled, waLink } from "./ui";
+import { ConsentLink } from "./Consent";
 
 export function Footer({ lang, site }: { lang: Lang; site: PageContent }) {
     const c = site.contact || {};
@@ -80,6 +81,9 @@ export function Footer({ lang, site }: { lang: Lang; site: PageContent }) {
                                 </a>
                             </li>
                         ))}
+                        <li>
+                            <ConsentLink label={lang === "es" ? "Preferencias de cookies" : "Cookie settings"} />
+                        </li>
                     </ul>
                 </div>
             </div>

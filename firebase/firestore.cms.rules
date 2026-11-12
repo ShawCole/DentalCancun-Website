@@ -33,3 +33,59 @@ match /leads/{leadId} {
     && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'staff'];
   allow delete: if cmsIsAdmin();
 }
+
+// ---------- Módulos (redirecciones, constructor, blog, CRM, agenda, estadísticas) ----------
+
+function cmsIsStaff() {
+  return request.auth != null &&
+    get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'staff'];
+}
+
+// Redirecciones, promociones e índices del blog y del constructor: lectura pública, escritura solo admin.
+match /cms_settings/{id} {
+  allow read: if true;
+  allow write: if cmsIsAdmin();
+}
+
+// Historial de versiones (páginas, ajustes, constructor, blog): solo admin.
+match /cms_history/{id} {
+  allow read, create: if cmsIsAdmin();
+  allow update, delete: if false;
+}
+
+// Constructor: la versión publicada es pública; los borradores solo los ve el panel.
+match /builder_pages/{id} {
+  allow read: if true;
+  allow write: if cmsIsAdmin();
+}
+match /builder_drafts/{id} {
+  allow read, write: if cmsIsAdmin();
+}
+
+// Blog: el público solo lee artículos publicados.
+match /blog_posts/{id} {
+  allow read: if resource.data.status == 'published' || cmsIsStaff();
+  allow write: if cmsIsAdmin();
+}
+
+// Citas y fotos: las crea el servidor (Admin SDK); el panel las lee y cambia el estado.
+match /appointments/{id} {
+  allow read: if cmsIsStaff();
+  allow update: if cmsIsStaff() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado']);
+  allow create, delete: if false;
+}
+match /photo_submissions/{id} {
+  allow read: if cmsIsStaff();
+  allow write: if false;
+}
+
+// Fichas del CRM (etapa, responsable, seguimiento, notas).
+match /crm/{key} {
+  allow read, write: if cmsIsStaff();
+}
+
+// Estadísticas anónimas: las escribe el servidor, el panel las lee.
+match /stats/{day} {
+  allow read: if cmsIsStaff();
+  allow write: if false;
+}

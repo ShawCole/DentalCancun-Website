@@ -14,6 +14,9 @@ export interface Rules {
     noticeMin: number;
     windowDays: number;
     blocked: string[];
+    /** Online deposit in USD; 0 means no online payment. */
+    depositUsd: number;
+    depositFor: Tipo[];
 }
 
 export async function getRules(): Promise<Rules> {
@@ -27,6 +30,8 @@ export async function getRules(): Promise<Rules> {
         noticeMin: num(r.noticeMin, 120),
         windowDays: Math.min(num(r.windowDays, 30), 60),
         blocked: (r.blocked || "").split(/\s+/).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)),
+        depositUsd: Math.max(0, Math.min(Number(r.depositUsd) || 0, 5000)),
+        depositFor: (r.depositFor || "").trim().toLowerCase() === "ambas" ? ["virtual", "clinica"] : ["clinica"],
     };
 }
 

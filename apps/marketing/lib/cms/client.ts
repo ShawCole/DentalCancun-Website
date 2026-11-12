@@ -12,6 +12,7 @@ import {
     query,
     serverTimestamp,
     setDoc,
+    where,
 } from "firebase/firestore";
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import getFirebaseApp, { auth, db } from "@/lib/firebase";
@@ -19,6 +20,16 @@ import { CMS_COLLECTION, defaultDoc, mergeDoc } from "./content";
 import type { PageDoc } from "./schema";
 
 export const MEDIA_COLLECTION = "cms_media";
+export const HISTORY_COLLECTION = "cms_history";
+
+export interface Version { id: string; data: string; updatedBy: string; createdAt?: { toDate(): Date } }
+
+/** Last saved versions of a page, a setting or a builder page (newest first). */
+export async function listVersions(kind: "page" | "setting" | "builder" | "blog", refId: string, max = 20): Promise<Version[]> {
+    const q = query(collection(requireDb(), HISTORY_COLLECTION), where("kind", "==", kind), where("ref", "==", refId), orderBy("createdAt", "desc"), limit(max));
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => ({ id: d.id, ...(d.data() as Omit<Version, "id">) }));
+}
 
 export interface MediaItem {
     id: string;
@@ -58,6 +69,14 @@ export async function savePage(pageId: string, value: PageDoc): Promise<void> {
         updatedAt: serverTimestamp(),
         updatedBy: payload.updatedBy,
     });
+    // Version history: every save can be restored from the editor.
+    await addDoc(collection(requireDb(), HISTORY_COLLECTION), {
+        kind: "page",
+        ref: pageId,
+        data: JSON.stringify(payload),
+        updatedBy: payload.updatedBy,
+        createdAt: serverTimestamp(),
+    }).catch((e) => console.warn("[cms] history not saved", e));
     const token = await user.getIdToken();
     const res = await fetch("/api/cms/revalidate", {
         method: "POST",

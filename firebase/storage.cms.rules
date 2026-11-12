@@ -10,3 +10,8 @@ match /cms/{file} {
         || (request.resource.size < 8 * 1024 * 1024
             && request.resource.contentType.matches('image/.*')));
 }
+
+// Respaldos diarios: solo el servidor (Admin SDK) escribe; nadie los lee desde el navegador.
+match /backups/{file} {
+  allow read, write: if false;
+}

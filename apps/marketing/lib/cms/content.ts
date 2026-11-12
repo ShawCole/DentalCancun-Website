@@ -1,5 +1,6 @@
 import { DEFAULTS } from "./defaults";
 import type { Lang, PageContent, PageDoc, PageValues } from "./schema";
+import { docsUrl } from "@/lib/firestoreRest";
 
 /** Firestore collection where the admin panel saves each page. */
 export const CMS_COLLECTION = "cms_pages";
@@ -46,7 +47,7 @@ export async function getPageDoc(pageId: string): Promise<PageDoc> {
     const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
     if (!projectId) return base;
 
-    const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/${CMS_COLLECTION}/${encodeURIComponent(pageId)}`;
+    const url = `${docsUrl(projectId)}/${CMS_COLLECTION}/${encodeURIComponent(pageId)}`;
     try {
         const res = await fetch(url, { next: { tags: [cmsTag(pageId)], revalidate: 600 } });
         if (!res.ok) return base; // 404 = never edited yet

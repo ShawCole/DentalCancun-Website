@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { clinicEmail, mailConfigured, rateLimited, sendMail } from "@/lib/server/mail";
+import { savePhotoSubmission } from "@/lib/server/records";
+import { verifyTurnstile } from "@/lib/server/turnstile";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +16,7 @@ export async function POST(req: NextRequest) {
     const f = await req.formData().catch(() => null);
     if (!f) return NextResponse.json({ ok: false, error: "data" }, { status: 400 });
     if (clean(f.get("empresa"))) return NextResponse.json({ ok: false, error: "data" }, { status: 400 });
+    if (!(await verifyTurnstile(clean(f.get("cf-turnstile-response"), 4000), ip))) return NextResponse.json({ ok: false, error: "robot" }, { status: 403 });
 
     const nombre = clean(f.get("nombre"), 120);
     const correo = clean(f.get("correo"), 160);
@@ -56,5 +59,7 @@ export async function POST(req: NextRequest) {
         console.error("[fotos] mail failed", e);
         return NextResponse.json({ ok: false, error: "mail" }, { status: 502 });
     }
+    // Only the contact data goes to the CRM; the photos stay in the clinic's inbox.
+    await savePhotoSubmission({ nombre, correo, whatsapp, pais: clean(f.get("pais"), 80), necesidad: clean(f.get("necesidad"), 120), idioma: lang, fotos: attachments.length }).catch((e) => console.error("[fotos] not recorded", e));
     return NextResponse.json({ ok: true, count: attachments.length });
 }

@@ -489,7 +489,7 @@ export const DEFAULTS: Record<string, PageDoc> = {
 
     concierge: {
         shared: {
-            rules: { days: "1,2,3,4,5,6", start: "10:00", end: "19:00", virtualMin: "30", clinicMin: "60", noticeMin: "120", windowDays: "30", blocked: "" },
+            rules: { days: "1,2,3,4,5,6", start: "10:00", end: "19:00", virtualMin: "30", clinicMin: "60", noticeMin: "120", windowDays: "30", blocked: "", depositUsd: "", depositFor: "clinica" },
             photos: {
                 f1_example: "/dsc/ejemplos/sonrisa.webp",
                 f2_example: "/dsc/ejemplos/lado-derecho.webp",

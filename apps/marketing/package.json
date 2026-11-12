@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@dentalsolutions/core": "file:../../packages/core",
+    "@puckeditor/core": "^0.24.0",
     "@tanstack/react-query": "^5.90.12",
     "@types/nodemailer": "^6.4.17",
     "classnames": "^2.5.1",

@@ -83,3 +83,19 @@ export async function createEvent(e: { summary: string; description: string; sta
         visibility: "private",
     });
 }
+
+export async function deleteEvent(eventId: string) {
+    const id = encodeURIComponent(process.env.GCAL_ID!);
+    return gcal("DELETE", `/calendars/${id}/events/${encodeURIComponent(eventId)}`);
+}
+
+export async function patchEvent(eventId: string, e: { summary?: string; description?: string; start?: Date; end?: Date; colorId?: string }) {
+    const id = encodeURIComponent(process.env.GCAL_ID!);
+    const body: Record<string, unknown> = {};
+    if (e.summary) body.summary = e.summary;
+    if (e.description) body.description = e.description;
+    if (e.colorId) body.colorId = e.colorId;
+    if (e.start) body.start = { dateTime: e.start.toISOString(), timeZone: "America/Cancun" };
+    if (e.end) body.end = { dateTime: e.end.toISOString(), timeZone: "America/Cancun" };
+    return gcal("PATCH", `/calendars/${id}/events/${encodeURIComponent(eventId)}`, body);
+}
