@@ -1,0 +1,766 @@
+{
+ "start": "q1",
+ "questions": {
+  "q1": {
+   "text": "¿Qué te gustaría mejorar primero?",
+   "help": "Elige lo que más te importa hoy. Después afinamos los detalles.",
+   "affects": true,
+   "options": [
+    {
+     "id": "color",
+     "label": "El color de mis dientes",
+     "next": "color_tipo"
+    },
+    {
+     "id": "espacios",
+     "label": "Espacios entre dientes",
+     "next": "esp_zona"
+    },
+    {
+     "id": "forma",
+     "label": "Forma o tamaño",
+     "next": "forma_tipo"
+    },
+    {
+     "id": "posicion",
+     "label": "Dientes desalineados",
+     "next": "pos_grado"
+    },
+    {
+     "id": "desgaste",
+     "label": "Desgaste o fracturas",
+     "next": "desg_tipo"
+    },
+    {
+     "id": "faltantes",
+     "label": "Dientes faltantes",
+     "next": "falt_cuantos"
+    },
+    {
+     "id": "varias",
+     "label": "Varias de estas cosas",
+     "next": "varias_enfoque"
+    }
+   ]
+  },
+  "color_tipo": {
+   "text": "¿Cómo describirías el color de tus dientes?",
+   "affects": true,
+   "options": [
+    {
+     "id": "uniforme",
+     "label": "Amarillo o apagado de forma pareja",
+     "next": "color_meta",
+     "g": "a"
+    },
+    {
+     "id": "manchas",
+     "label": "Manchas o tonos irregulares",
+     "next": "color_meta",
+     "g": "a"
+    },
+    {
+     "id": "oscuro",
+     "label": "Un diente más oscuro que los demás",
+     "next": "color_meta",
+     "g": "b"
+    }
+   ]
+  },
+  "color_meta": {
+   "text": "¿Qué resultado te gustaría conseguir con el color de tus dientes?",
+   "affects": true,
+   "options": [
+    {
+     "id": "natural",
+     "label": "Un tono más claro, pero natural",
+     "next": "color_forma",
+     "g": "a"
+    },
+    {
+     "id": "luminosa",
+     "label": "Una sonrisa más blanca, uniforme y luminosa",
+     "next": "color_forma",
+     "g": "b"
+    },
+    {
+     "id": "alta",
+     "label": "Un blanco de alta estética, con un cambio visible",
+     "next": "color_forma",
+     "g": "b"
+    },
+    {
+     "id": "manchas",
+     "label": "Corregir manchas o diferencias de color entre mis dientes",
+     "next": "color_forma",
+     "g": "b"
+    }
+   ]
+  },
+  "color_forma": {
+   "text": "¿También te gustaría cambiar la forma o el tamaño?",
+   "affects": true,
+   "options": [
+    {
+     "id": "si",
+     "label": "Sí, me gustaría",
+     "next": "cantidad"
+    },
+    {
+     "id": "no",
+     "label": "No, solo el color",
+     "next": "cantidad"
+    }
+   ]
+  },
+  "esp_zona": {
+   "text": "¿En qué parte de tu sonrisa se encuentran los espacios?",
+   "affects": false,
+   "options": [
+    {
+     "id": "centrales",
+     "label": "Entre los dos dientes centrales superiores",
+     "next": "esp_tam"
+    },
+    {
+     "id": "superiores",
+     "label": "Entre varios dientes superiores",
+     "next": "esp_tam"
+    },
+    {
+     "id": "inferiores",
+     "label": "Entre varios dientes inferiores",
+     "next": "esp_tam"
+    },
+    {
+     "id": "ambas",
+     "label": "En ambas arcadas, superior e inferior",
+     "next": "esp_tam"
+    },
+    {
+     "id": "falta",
+     "label": "Tengo un espacio porque me falta uno o varios dientes",
+     "next": "falt_cuantos"
+    }
+   ]
+  },
+  "esp_tam": {
+   "text": "¿Qué tan grandes son los espacios?",
+   "affects": true,
+   "options": [
+    {
+     "id": "pequenos",
+     "label": "Pequeños, apenas visibles",
+     "next": "cantidad",
+     "g": "a"
+    },
+    {
+     "id": "visibles",
+     "label": "Visibles al hablar o sonreír",
+     "next": "cantidad",
+     "g": "a"
+    },
+    {
+     "id": "amplios",
+     "label": "Amplios, en varios dientes",
+     "next": "cantidad",
+     "g": "b"
+    }
+   ]
+  },
+  "forma_tipo": {
+   "text": "¿Qué te gustaría corregir de la forma de tus dientes?",
+   "affects": false,
+   "options": [
+    {
+     "id": "pequenos",
+     "label": "Mis dientes son demasiado pequeños",
+     "next": "cantidad"
+    },
+    {
+     "id": "cortos",
+     "label": "Mis dientes se ven cortos o desgastados",
+     "next": "cantidad"
+    },
+    {
+     "id": "largos",
+     "label": "Algunos dientes son más largos que otros",
+     "next": "cantidad"
+    },
+    {
+     "id": "irregulares",
+     "label": "Mis dientes tienen formas irregulares",
+     "next": "cantidad"
+    },
+    {
+     "id": "simetria",
+     "label": "Quiero una sonrisa más simétrica y armoniosa",
+     "next": "cantidad"
+    }
+   ]
+  },
+  "pos_grado": {
+   "text": "¿Cómo describirías la posición de tus dientes?",
+   "affects": true,
+   "options": [
+    {
+     "id": "leve",
+     "label": "Ligeramente desalineados",
+     "next": "pos_meta",
+     "g": "a"
+    },
+    {
+     "id": "moderada",
+     "label": "Moderadamente desalineados",
+     "next": "pos_meta",
+     "g": "a"
+    },
+    {
+     "id": "girados",
+     "label": "Algunos dientes están girados o sobresalen",
+     "next": "pos_meta",
+     "g": "b"
+    },
+    {
+     "id": "apinados",
+     "label": "Mis dientes están apiñados",
+     "next": "pos_meta",
+     "g": "b"
+    },
+    {
+     "id": "mordida",
+     "label": "Siento que mi mordida no encaja correctamente",
+     "next": "pos_meta",
+     "g": "c"
+    }
+   ]
+  },
+  "pos_meta": {
+   "text": "¿Qué resultado te gustaría conseguir?",
+   "affects": true,
+   "options": [
+    {
+     "id": "sin_brackets",
+     "label": "Una sonrisa visualmente más alineada sin utilizar brackets",
+     "next": "cantidad"
+    },
+    {
+     "id": "mejorar",
+     "label": "Mejorar la alineación y la estética de mis dientes",
+     "next": "viaje"
+    },
+    {
+     "id": "alineadores",
+     "label": "Corregir la posición de mis dientes mediante alineadores",
+     "next": "viaje"
+    },
+    {
+     "id": "evalue",
+     "label": "Quiero que el equipo médico evalúe cuál es la mejor alternativa",
+     "next": "viaje"
+    }
+   ]
+  },
+  "desg_tipo": {
+   "text": "¿Qué describe mejor tu caso?",
+   "affects": true,
+   "options": [
+    {
+     "id": "bordes",
+     "label": "Bordes desgastados o pequeñas fracturas",
+     "next": "desg_preocupa"
+    },
+    {
+     "id": "pocos",
+     "label": "Uno o dos dientes rotos o muy restaurados",
+     "next": "desg_preocupa"
+    },
+    {
+     "id": "varios",
+     "label": "Varios dientes desgastados o debilitados",
+     "next": "desg_preocupa"
+    },
+    {
+     "id": "general",
+     "label": "Desgaste en casi todos mis dientes",
+     "next": "desg_preocupa"
+    }
+   ]
+  },
+  "desg_preocupa": {
+   "text": "¿Qué es lo que más te preocupa de tus dientes desgastados o fracturados?",
+   "affects": true,
+   "options": [
+    {
+     "id": "forma",
+     "label": "Recuperar su forma y tamaño original",
+     "next": "desg_sintomas",
+     "g": "est"
+    },
+    {
+     "id": "apariencia",
+     "label": "Mejorar la apariencia de mi sonrisa",
+     "next": "desg_sintomas",
+     "g": "est"
+    },
+    {
+     "id": "resistencia",
+     "label": "Recuperar la resistencia de mis dientes",
+     "next": "desg_sintomas",
+     "g": "fun"
+    },
+    {
+     "id": "masticar",
+     "label": "Poder masticar cómodamente",
+     "next": "desg_sintomas",
+     "g": "fun"
+    },
+    {
+     "id": "evitar",
+     "label": "Evitar que continúen desgastándose o fracturándose",
+     "next": "desg_sintomas",
+     "g": "fun"
+    },
+    {
+     "id": "completa",
+     "label": "Necesito una rehabilitación estética y funcional completa",
+     "next": "desg_sintomas",
+     "g": "int"
+    }
+   ]
+  },
+  "desg_sintomas": {
+   "text": "¿Presentas alguna de estas molestias?",
+   "help": "Puedes elegir la que más se parezca a tu caso.",
+   "affects": false,
+   "options": [
+    {
+     "id": "sensibilidad",
+     "label": "Sensibilidad",
+     "next": "viaje"
+    },
+    {
+     "id": "dolor",
+     "label": "Dolor al masticar",
+     "next": "viaje"
+    },
+    {
+     "id": "fracturas",
+     "label": "Fracturas frecuentes",
+     "next": "viaje"
+    },
+    {
+     "id": "ninguna",
+     "label": "Ninguna de estas",
+     "next": "viaje"
+    }
+   ]
+  },
+  "falt_cuantos": {
+   "text": "¿Cuántos dientes naturales te faltan?",
+   "affects": true,
+   "options": [
+    {
+     "id": "uno",
+     "label": "Uno",
+     "next": "falt_actual",
+     "g": "uno"
+    },
+    {
+     "id": "dos_tres",
+     "label": "Entre dos y tres",
+     "next": "falt_actual",
+     "g": "dos_tres"
+    },
+    {
+     "id": "cuatro",
+     "label": "Cuatro o más",
+     "next": "falt_actual",
+     "g": "cuatro"
+    },
+    {
+     "id": "mayoria_sup",
+     "label": "La mayoría de los dientes superiores",
+     "next": "falt_actual",
+     "g": "arcada"
+    },
+    {
+     "id": "mayoria_inf",
+     "label": "La mayoría de los dientes inferiores",
+     "next": "falt_actual",
+     "g": "arcada"
+    },
+    {
+     "id": "todos",
+     "label": "Todos los dientes de una o ambas arcadas",
+     "next": "falt_actual",
+     "g": "arcada"
+    }
+   ]
+  },
+  "falt_actual": {
+   "text": "¿Actualmente utilizas algún tratamiento para reemplazar esos dientes?",
+   "affects": false,
+   "options": [
+    {
+     "id": "ninguno",
+     "label": "No, tengo los espacios vacíos",
+     "next": "falt_zona"
+    },
+    {
+     "id": "removible",
+     "label": "Sí, utilizo una prótesis removible",
+     "next": "falt_reemplazados"
+    },
+    {
+     "id": "puente",
+     "label": "Sí, tengo un puente dental fijo",
+     "next": "falt_reemplazados"
+    },
+    {
+     "id": "implantes",
+     "label": "Sí, tengo uno o varios implantes dentales",
+     "next": "falt_reemplazados"
+    },
+    {
+     "id": "combinacion",
+     "label": "Tengo una combinación de implantes y prótesis",
+     "next": "falt_reemplazados"
+    }
+   ]
+  },
+  "falt_reemplazados": {
+   "text": "¿Cuántos dientes han sido reemplazados mediante prótesis o implantes?",
+   "affects": false,
+   "options": [
+    {
+     "id": "uno",
+     "label": "Uno",
+     "next": "falt_zona"
+    },
+    {
+     "id": "dos_tres",
+     "label": "Entre dos y tres",
+     "next": "falt_zona"
+    },
+    {
+     "id": "cuatro",
+     "label": "Cuatro o más",
+     "next": "falt_zona"
+    },
+    {
+     "id": "arcada",
+     "label": "Una arcada completa",
+     "next": "falt_zona"
+    },
+    {
+     "id": "ambas",
+     "label": "Ambas arcadas",
+     "next": "falt_zona"
+    }
+   ]
+  },
+  "falt_zona": {
+   "text": "¿Dónde se encuentran los dientes faltantes o reemplazados?",
+   "affects": false,
+   "options": [
+    {
+     "id": "ant_sup",
+     "label": "En la zona anterior superior (dientes de enfrente, arriba)",
+     "next": "falt_pref"
+    },
+    {
+     "id": "post_sup",
+     "label": "En la zona posterior superior (muelas de arriba)",
+     "next": "falt_pref"
+    },
+    {
+     "id": "ant_inf",
+     "label": "En la zona anterior inferior (dientes de enfrente, abajo)",
+     "next": "falt_pref"
+    },
+    {
+     "id": "post_inf",
+     "label": "En la zona posterior inferior (muelas de abajo)",
+     "next": "falt_pref"
+    },
+    {
+     "id": "mixta",
+     "label": "En zonas anteriores y posteriores",
+     "next": "falt_pref"
+    },
+    {
+     "id": "ambas",
+     "label": "En ambas arcadas",
+     "next": "falt_pref"
+    }
+   ]
+  },
+  "falt_pref": {
+   "text": "¿Qué tipo de solución te gustaría tener?",
+   "affects": true,
+   "options": [
+    {
+     "id": "fija",
+     "label": "Una solución fija que no tenga que retirar",
+     "next": "viaje",
+     "g": "fija"
+    },
+    {
+     "id": "removible",
+     "label": "Una prótesis removible",
+     "next": "viaje",
+     "g": "rem"
+    },
+    {
+     "id": "reemplazar",
+     "label": "Reemplazar mi prótesis actual por una alternativa más cómoda",
+     "next": "viaje",
+     "g": "fija"
+    },
+    {
+     "id": "rehab_fija",
+     "label": "Recuperar todos mis dientes mediante una rehabilitación fija",
+     "next": "viaje",
+     "g": "total"
+    },
+    {
+     "id": "recomendacion",
+     "label": "Prefiero recibir una recomendación profesional",
+     "next": "viaje",
+     "g": "fija"
+    }
+   ]
+  },
+  "varias_enfoque": {
+   "text": "¿Qué buscas principalmente?",
+   "affects": false,
+   "options": [
+    {
+     "id": "estetica",
+     "label": "Mejorar la estética de mi sonrisa",
+     "next": "viaje"
+    },
+    {
+     "id": "funcion",
+     "label": "Recuperar la función: masticar con comodidad",
+     "next": "viaje"
+    },
+    {
+     "id": "ambas",
+     "label": "Ambas: estética y función",
+     "next": "viaje"
+    }
+   ]
+  },
+  "cantidad": {
+   "text": "¿Cuántos dientes visibles al sonreír te gustaría mejorar?",
+   "affects": false,
+   "options": [
+    {
+     "id": "1-2",
+     "label": "1 o 2",
+     "next": "prioridad"
+    },
+    {
+     "id": "3-6",
+     "label": "De 3 a 6",
+     "next": "prioridad"
+    },
+    {
+     "id": "7+",
+     "label": "7 o más",
+     "next": "prioridad"
+    }
+   ]
+  },
+  "prioridad": {
+   "text": "¿Qué es lo más importante para ti al transformar tu sonrisa?",
+   "help": "Nos ayuda a conocer tus preferencias. La indicación clínica se define en tu valoración.",
+   "affects": true,
+   "options": [
+    {
+     "id": "natural",
+     "label": "Conseguir un resultado natural, estético y armonioso",
+     "next": "viaje",
+     "g": "dir"
+    },
+    {
+     "id": "una_cita",
+     "label": "Realizar mi tratamiento en una sola cita",
+     "next": "viaje",
+     "g": "dir"
+    },
+    {
+     "id": "conservar",
+     "label": "Conservar al máximo la estructura natural de mis dientes",
+     "next": "viaje",
+     "g": "dir"
+    },
+    {
+     "id": "materiales",
+     "label": "Elegir materiales de alta resistencia y estabilidad de color",
+     "next": "viaje",
+     "g": "cer"
+    },
+    {
+     "id": "integral",
+     "label": "Conseguir una transformación estética integral",
+     "next": "viaje",
+     "g": "dir"
+    },
+    {
+     "id": "doctora",
+     "label": "Prefiero que el equipo médico me recomiende la mejor alternativa",
+     "next": "viaje",
+     "g": "dir"
+    }
+   ]
+  },
+  "viaje": {
+   "text": "¿Cuándo te gustaría viajar a Cancún?",
+   "help": "Nos ayuda a preparar tu valoración a tiempo.",
+   "affects": false,
+   "options": [
+    {
+     "id": "mes",
+     "label": "En el próximo mes",
+     "next": "agenda"
+    },
+    {
+     "id": "trimestre",
+     "label": "En 1 a 3 meses",
+     "next": "agenda"
+    },
+    {
+     "id": "explorando",
+     "label": "Más adelante, estoy explorando",
+     "next": "agenda"
+    }
+   ]
+  },
+  "agenda": {
+   "text": "¿Te gustaría agendar una valoración personalizada?",
+   "affects": false,
+   "options": [
+    {
+     "id": "pronto",
+     "label": "Sí, lo antes posible",
+     "next": null
+    },
+    {
+     "id": "dudas",
+     "label": "Sí, pero primero quiero resolver algunas dudas",
+     "next": null
+    },
+    {
+     "id": "despues",
+     "label": "Más adelante",
+     "next": null
+    }
+   ]
+  }
+ },
+ "treatments": {
+  "directas": {
+   "name": "Diseño de sonrisa con carillas directas",
+   "short": "Carillas directas",
+   "tipo": "Estética",
+   "url": "carillas-directas-en-composite",
+   "desc": "Transforma el color, la forma y la armonía de tu sonrisa mediante una técnica conservadora que, en los casos indicados, puede realizarse en una sola cita.",
+   "citas": "1 cita de alrededor de 3 horas",
+   "estancia": "1 a 2 días [VALIDAR]",
+   "garantia": "1 año [VALIDAR]",
+   "inversion": "USD 250 por carilla [VALIDAR]"
+  },
+  "ceramicas": {
+   "name": "Diseño de sonrisa con carillas cerámicas",
+   "short": "Carillas cerámicas",
+   "tipo": "Estética",
+   "url": "carillas-e-max-y-zirconio",
+   "desc": "Una alternativa de alta estética, resistencia y estabilidad de color, diseñada para conseguir resultados naturales y personalizados.",
+   "citas": "3 citas",
+   "estancia": "3 a 4 días",
+   "garantia": "5 años [VALIDAR]",
+   "inversion": "USD 450 por carilla [VALIDAR]"
+  },
+  "alineadores": {
+   "name": "Alineadores transparentes",
+   "short": "Alineadores",
+   "tipo": "Estética",
+   "url": "alineadores-transparentes",
+   "desc": "Mejora progresivamente la posición de tus dientes mediante un tratamiento ortodóncico personalizado.",
+   "citas": "Según tu plan",
+   "estancia": "Se define en tu valoración [VALIDAR]",
+   "garantia": "[VALIDAR]",
+   "inversion": "Plan personalizado [VALIDAR]"
+  },
+  "rehabilitacion": {
+   "name": "Rehabilitación dental personalizada",
+   "short": "Rehabilitación personalizada",
+   "tipo": "Funcional",
+   "url": "coronas-dentales",
+   "desc": "Recupera la forma, resistencia y función de tus dientes mediante restauraciones adaptadas a tus necesidades.",
+   "citas": "Según tu caso",
+   "estancia": "Se define en tu plan",
+   "garantia": "Según el material [VALIDAR]",
+   "inversion": "Plan personalizado [VALIDAR]"
+  },
+  "implantes": {
+   "name": "Implantes dentales y rehabilitación protésica",
+   "short": "Implantes",
+   "tipo": "Funcional",
+   "url": "implantes-dentales",
+   "desc": "Recupera los dientes faltantes mediante soluciones fijas o removibles, según tu condición clínica.",
+   "citas": "2 etapas",
+   "estancia": "Según tu plan [VALIDAR]",
+   "garantia": "Según el sistema [VALIDAR]",
+   "inversion": "Según tu valoración"
+  },
+  "protesis": {
+   "name": "Prótesis dental personalizada",
+   "short": "Prótesis",
+   "tipo": "Funcional",
+   "url": "protesis-fija-y-removible",
+   "desc": "Recupera tu sonrisa y la comodidad al comer con una prótesis diseñada a tu medida, según tu condición clínica.",
+   "citas": "Según tu caso",
+   "estancia": "Se define en tu plan",
+   "garantia": "Según el tipo [VALIDAR]",
+   "inversion": "Plan personalizado [VALIDAR]"
+  },
+  "allon4": {
+   "name": "Rehabilitación oral completa",
+   "short": "Rehabilitación completa",
+   "tipo": "Funcional",
+   "url": "all-on-4-y-all-on-6",
+   "desc": "Conoce las alternativas de prótesis completas y rehabilitaciones fijas sobre implantes, incluyendo All-on-4 y All-on-6 cuando estén indicadas.",
+   "citas": "2 estancias",
+   "estancia": "5 a 7 días cada una",
+   "garantia": "Hasta 5 años [VALIDAR]",
+   "inversion": "Desde USD 9,900 / 11,900 por arcada [VALIDAR]"
+  },
+  "valoracion": {
+   "name": "Valoración integral de estética y rehabilitación oral",
+   "short": "Valoración integral",
+   "tipo": "Estética y funcional",
+   "url": "",
+   "desc": "Diseñaremos un plan personalizado para recuperar la estética, la función y la armonía de tu sonrisa.",
+   "citas": "Valoración previa",
+   "estancia": "Se define después de la valoración",
+   "garantia": "—",
+   "inversion": "Valoración virtual sin costo [VALIDAR]"
+  },
+  "blanqueamiento": {
+   "name": "Blanqueamiento dental",
+   "short": "Blanqueamiento",
+   "tipo": "Estética",
+   "url": "",
+   "desc": "Aclara el tono natural de tus dientes cuando está indicado. No modifica la forma, el tamaño ni la posición.",
+   "citas": "Según tu caso",
+   "estancia": "—",
+   "garantia": "—",
+   "inversion": "[VALIDAR]"
+  }
+ },
+ "cta": "Tu sonrisa merece un diseño personalizado. Agenda tu valoración con nuestro equipo médico y descubre qué tratamiento puede ayudarte a conseguir el resultado que deseas."
+}

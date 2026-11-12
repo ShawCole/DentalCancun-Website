@@ -43,7 +43,7 @@ export default function SmileDesignPage() {
                         No-Prep Veneers. No Drilling. No Pain.
                     </p>
                     <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed">
-                        Boutique cosmetic dentistry by Dr.&nbsp;Carolina Aguirre,&nbsp;M.S. &mdash; 25&nbsp;years of precision, 15&nbsp;minutes from Cancun&nbsp;Airport.
+                        Boutique cosmetic dentistry by our specialist medical team &mdash; 25+&nbsp;years of experience, 15&nbsp;minutes from Cancun&nbsp;Airport.
                     </p>
 
                     {/* CTAs */}
@@ -117,12 +117,12 @@ export default function SmileDesignPage() {
             {/* 3. SCROLL TIMELINE: VIP Concierge */}
             <VIPConcierge />
 
-            {/* 3. MEET DR. CAROLINA */}
+            {/* 3. MEET THE MEDICAL TEAM */}
             <section className="py-24 bg-neutral-50">
                 <div className="container mx-auto px-4 max-w-5xl">
                     <div className="text-center mb-12">
-                        <h2 className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">Your Smile Designer</h2>
-                        <h3 className="text-3xl md:text-5xl font-serif">Meet Dr.&nbsp;Carolina</h3>
+                        <h2 className="text-sm font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">Your Smile Design Team</h2>
+                        <h3 className="text-3xl md:text-5xl font-serif">Meet Our Medical Team</h3>
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
@@ -130,8 +130,8 @@ export default function SmileDesignPage() {
                             <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-xl">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src="https://assets.cdn.filesafe.space/dq3ylOAKb1QTcAeFKnwl/media/69b9dc5dad02768b3f5ce10f.jpeg"
-                                    alt="Dr. Carolina Aguirre — Cosmetic Dentist"
+                                    src="/redesign/room1.jpg"
+                                    alt="Dental Solutions clinic in Puerto Cancun"
                                     width={400}
                                     height={533}
                                     loading="eager"
@@ -142,13 +142,13 @@ export default function SmileDesignPage() {
 
                         <div className="w-full md:w-3/5 space-y-6">
                             <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
-                                With over 25 years of specialization in aesthetic and cosmetic dentistry, Dr. Carolina has transformed thousands of smiles using the latest techniques in non-invasive and minimally invasive veneer treatments.
+                                With more than 25 years of experience in aesthetic and cosmetic dentistry, our medical team uses current non-invasive and minimally invasive veneer techniques.
                             </p>
                             <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
-                                Her passion for creating natural, beautiful smiles combined with her meticulous attention to detail has made her one of the most sought-after smile designers in Quintana Roo, Mexico.
+                                Every smile is planned around the patient&apos;s face and expression, with careful attention to detail at every step.
                             </p>
                             <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
-                                Dr. Carolina&apos;s expertise in working with premium German composites and her artistic approach to smile design ensures that every patient receives personalized, stunning results that enhance their natural beauty and boost their confidence.
+                                Premium German composites and a personalized smile design aim for natural results that respect each patient&apos;s features.
                             </p>
                             <div className="flex flex-wrap gap-3 pt-2">
                                 {["25+ Years Experience", "Aesthetic Specialist", "Thousands of Smiles"].map((tag) => (
@@ -244,14 +244,14 @@ export default function SmileDesignPage() {
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="text-center mb-16">
                         <h2 className="text-sm font-bold tracking-[0.2em] text-[#D4AF37] uppercase mb-3">Boutique Precision</h2>
-                        <h3 className="text-3xl md:text-5xl font-serif">Why Patients Choose Dr.&nbsp;Carolina</h3>
+                        <h3 className="text-3xl md:text-5xl font-serif">Why Patients Choose Dental Solutions</h3>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 mb-20">
                         {[
                             { icon: "💎", title: "Same Materials, Fraction of the Price", desc: "Gold-diamond, carbon diamonds, and zirconia — the same premium materials used in the US. $15k here vs $40–50k stateside." },
                             { icon: "✈️", title: "Weekend Turnaround", desc: "Fly in Friday, get your dream smile, fly home Sunday. Non-invasive veneers done in a single trip." },
-                            { icon: "🎓", title: "25 Years of Expertise", desc: "Dr. Carolina Aguirre holds a Master's degree and has 25 years of precision cosmetic dentistry experience." },
+                            { icon: "🎓", title: "25 Years of Expertise", desc: "Our medical team brings more than 25 years of cosmetic dentistry experience." },
                         ].map((item, i) => (
                             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
                                 <span className="text-3xl block mb-4">{item.icon}</span>

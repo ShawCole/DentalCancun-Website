@@ -1,0 +1,91 @@
+// Reglas para el administrador del sitio (CMS).
+// Agrégalas DENTRO del bloque `match /databases/{database}/documents { ... }`
+// de las reglas actuales del proyecto de Firebase. No borres las reglas existentes.
+
+function cmsIsAdmin() {
+  return request.auth != null &&
+    get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+}
+
+// Textos de las páginas: lectura pública (el sitio los muestra), escritura solo administradores.
+match /cms_pages/{pageId} {
+  allow read: if true;
+  allow write: if cmsIsAdmin();
+}
+
+// Biblioteca de imágenes: lectura pública, escritura solo administradores.
+match /cms_media/{mediaId} {
+  allow read: if true;
+  allow write: if cmsIsAdmin();
+}
+
+// Diagnósticos del quiz: cualquiera puede crear uno (sin leer nada); solo admin y recepción los ven.
+match /leads/{leadId} {
+  allow create: if request.resource.data.keys().hasOnly([
+      'nombre','whatsapp','correo','pais','idioma','necesidad','tratamiento','alternativa','tipo',
+      'viaje','agenda','prioridad','regla','notas','ruta','pagina','estado','privacidad','createdAt'])
+    && request.resource.data.privacidad == true
+    && request.resource.data.estado == 'nuevo'
+    && request.resource.data.nombre is string && request.resource.data.nombre.size() < 120
+    && request.resource.data.whatsapp is string && request.resource.data.whatsapp.size() < 40
+    && request.resource.data.ruta is string && request.resource.data.ruta.size() < 5000;
+  allow read, update: if request.auth != null
+    && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'staff'];
+  allow delete: if cmsIsAdmin();
+}
+
+// ---------- Módulos (redirecciones, constructor, blog, CRM, agenda, estadísticas) ----------
+
+function cmsIsStaff() {
+  return request.auth != null &&
+    get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'staff'];
+}
+
+// Redirecciones, promociones e índices del blog y del constructor: lectura pública, escritura solo admin.
+match /cms_settings/{id} {
+  allow read: if true;
+  allow write: if cmsIsAdmin();
+}
+
+// Historial de versiones (páginas, ajustes, constructor, blog): solo admin.
+match /cms_history/{id} {
+  allow read, create: if cmsIsAdmin();
+  allow update, delete: if false;
+}
+
+// Constructor: la versión publicada es pública; los borradores solo los ve el panel.
+match /builder_pages/{id} {
+  allow read: if true;
+  allow write: if cmsIsAdmin();
+}
+match /builder_drafts/{id} {
+  allow read, write: if cmsIsAdmin();
+}
+
+// Blog: el público solo lee artículos publicados.
+match /blog_posts/{id} {
+  allow read: if resource.data.status == 'published' || cmsIsStaff();
+  allow write: if cmsIsAdmin();
+}
+
+// Citas y fotos: las crea el servidor (Admin SDK); el panel las lee y cambia el estado.
+match /appointments/{id} {
+  allow read: if cmsIsStaff();
+  allow update: if cmsIsStaff() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado']);
+  allow create, delete: if false;
+}
+match /photo_submissions/{id} {
+  allow read: if cmsIsStaff();
+  allow write: if false;
+}
+
+// Fichas del CRM (etapa, responsable, seguimiento, notas).
+match /crm/{key} {
+  allow read, write: if cmsIsStaff();
+}
+
+// Estadísticas anónimas: las escribe el servidor, el panel las lee.
+match /stats/{day} {
+  allow read: if cmsIsStaff();
+  allow write: if false;
+}

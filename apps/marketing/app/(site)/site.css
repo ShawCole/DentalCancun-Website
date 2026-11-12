@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* Dental Solutions Puerto Cancún · cristal boutique */
+@theme inline {
+  --color-champana: #E8D9C5;
+  --color-marfil: #F6F3ED;
+  --color-verde: #153D32;
+  --color-verde-osc: #0E2A22;
+  --color-dorado: #B69A62;
+  --color-dorado-claro: #D9C28F;
+  --color-dorado-texto: #7A5F2E;
+  --color-grafito: #252525;
+  --color-gris: #5C564D;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-display: var(--font-dmserif), Georgia, serif;
+  --font-narrow: var(--font-ptnarrow), "Arial Narrow", sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: #F6F3ED; color: #252525; -webkit-font-smoothing: antialiased; }
+[id] { scroll-margin-top: 110px; }
+
+.glass {
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
+  backdrop-filter: blur(22px) saturate(130%);
+  box-shadow: 0 24px 60px -36px rgba(40, 30, 15, 0.35);
+}
+.glass-dark {
+  background: rgba(14, 42, 34, 0.55);
+  border: 1px solid rgba(217, 194, 143, 0.28);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+/* Palabra en cursiva de los titulares */
+.rich em { font-style: italic; color: #153D32; }
+.font-narrow.rich em { font-family: var(--font-ptnarrow), "Arial Narrow", sans-serif; color: #252525; }
+.on-dark .rich em { color: #D9C28F; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid #B69A62;
+  outline-offset: 3px;
+}
+
+.lift { transition: transform .2s ease; }
+.lift:hover { transform: translateY(-3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .lift, .lift:hover { transition: none; transform: none; }
+}
+
+/* Blog article body */
+.prose-dsc { font-size: 1.075rem; line-height: 1.8; color: #3a362f; }
+.prose-dsc > * + * { margin-top: 1.15em; }
+.prose-dsc h2 { font-family: var(--font-cormorant), Georgia, serif; font-size: 2rem; line-height: 1.15; color: #252525; margin-top: 1.8em; }
+.prose-dsc h3 { font-weight: 700; font-size: 1.2rem; color: #252525; margin-top: 1.5em; }
+.prose-dsc a { color: #153D32; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.prose-dsc ul { list-style: disc; padding-left: 1.4em; }
+.prose-dsc ol { list-style: decimal; padding-left: 1.4em; }
+.prose-dsc li + li { margin-top: 0.35em; }
+.prose-dsc blockquote { border-left: 3px solid #B69A62; padding-left: 1em; font-style: italic; color: #5C564D; }
+.prose-dsc img { border-radius: 22px; width: 100%; height: auto; }
