@@ -50,7 +50,7 @@ export function Header({ lang, logo, nav, cta, altHref }: Props) {
                     >
                         {lang === "es" ? "EN" : "ES"}
                     </a>
-                    <a href={`${home}#valoracion`} className="hidden min-h-11 items-center rounded-full bg-verde px-5 text-sm font-bold text-marfil hover:bg-verde-osc sm:inline-flex">
+                    <a href="#agendar" className="hidden min-h-11 items-center rounded-full bg-verde px-5 text-sm font-bold text-marfil hover:bg-verde-osc sm:inline-flex">
                         {cta}
                     </a>
                     <button
@@ -78,7 +78,7 @@ export function Header({ lang, logo, nav, cta, altHref }: Props) {
                             </li>
                         ))}
                         <li className="mt-2">
-                            <a href={`${home}#valoracion`} onClick={() => setOpen(false)} className="flex min-h-12 items-center justify-center rounded-full bg-verde font-bold text-marfil">
+                            <a href="#agendar" onClick={() => setOpen(false)} className="flex min-h-12 items-center justify-center rounded-full bg-verde font-bold text-marfil">
                                 {cta}
                             </a>
                         </li>

@@ -38,6 +38,31 @@ el sitio muestra los textos por defecto de `lib/cms/defaults.ts`, así que nunca
    Firestore → `users` → documento con el **UID** de ese usuario, campos `email`, `displayName` y `role: "admin"`.
 5. Entra a `/admin` con ese correo.
 
+## Agenda (Google Calendar) y formulario de fotos
+
+El botón flotante del concierge abre WhatsApp, llamada o la agenda. La agenda muestra solo los horarios
+libres del Google Calendar de la clínica y, al reservar, crea el evento «[Videollamada · por confirmar] Nombre».
+Las reglas (días, horario, duración, anticipación, fechas bloqueadas) se editan en
+**Páginas y textos → Concierge, agenda y fotos**. Los enlaces `#agendar`, `#agendar-virtual` y `#agendar-clinica` abren la agenda.
+
+Variables en Netlify (secretas, nunca en el código ni por chat):
+
+| Variable | Qué es |
+|---|---|
+| `GOOGLE_SERVICE_ACCOUNT_JSON` | Contenido del archivo JSON de la cuenta de servicio de Google (se puede pegar tal cual o en base64). |
+| `GCAL_ID` | ID del calendario de la clínica (Configuración del calendario → Integrar calendario). |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Correo de envío. Con Gmail: `smtp.gmail.com`, `465`, la cuenta y una contraseña de aplicación. |
+| `CLINIC_EMAIL` | Correo donde llegan los avisos de citas y las fotos. |
+
+Comparte el calendario con el correo de la cuenta de servicio con permiso **«Hacer cambios en los eventos»**.
+Si el calendario no responde, la agenda no ofrece horarios y manda al paciente a WhatsApp (nunca ofrece un horario sin verificar).
+
+El formulario de fotos reduce cada foto en el teléfono del paciente (máx. 1600 px) y las envía como adjuntos al
+`CLINIC_EMAIL`, con una confirmación al paciente. Las fotos de ejemplo van en `public/dsc/ejemplos/`
+(`sonrisa.webp`, `lado-derecho.webp`, `lado-izquierdo.webp`, `arcada-superior.webp`, `arcada-inferior.webp`) o se cambian desde el panel.
+
+El anticipo con Stripe para la valoración en clínica queda pendiente hasta que la clínica apruebe monto y condiciones.
+
 ## Cómo agregar un campo o una página editable
 
 1. Agrega la página, sección o campo en `lib/cms/schema.ts` (el panel genera el formulario solo).

@@ -7,6 +7,7 @@ import { getPageContent } from "@/lib/cms/content";
 import { LANGS, type Lang } from "@/lib/cms/schema";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { Concierge } from "@/components/site/Concierge";
 
 const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["500", "600"], style: ["normal", "italic"] });
 const dmSerif = DM_Serif_Display({ variable: "--font-dmserif", subsets: ["latin"], weight: "400" });
@@ -26,7 +27,7 @@ export default async function SiteLayout({ children, params }: { children: React
     const { lang: raw } = await params;
     if (!LANGS.includes(raw as Lang)) notFound();
     const lang = raw as Lang;
-    const site = await getPageContent("site", lang);
+    const [site, concierge] = await Promise.all([getPageContent("site", lang), getPageContent("concierge", lang)]);
     const h = site.header || {};
     const base = `/${lang}`;
     const nav = [
@@ -53,6 +54,7 @@ export default async function SiteLayout({ children, params }: { children: React
                 <Header lang={lang} logo={site.brand?.logo || "/dsc/logo-dsc.png"} nav={nav} cta={h.cta} altHref={lang === "es" ? "/en" : "/es"} />
                 <main id="contenido">{children}</main>
                 <Footer lang={lang} site={site} />
+                <Concierge lang={lang} whatsapp={site.contact?.whatsapp || ""} phone={site.contact?.phone || ""} panel={concierge.panel || {}} booking={concierge.booking || {}} />
             </body>
         </html>
     );

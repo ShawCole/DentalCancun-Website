@@ -294,6 +294,69 @@ PAGES.push({
     ],
 });
 
+PAGES.push({
+    id: "concierge",
+    label: "Concierge, agenda y fotos",
+    path: { es: "/es#agendar", en: "/en#agendar" },
+    sections: [
+        {
+            id: "panel",
+            label: "Panel del concierge",
+            fields: [
+                t("button", "Texto del botón flotante (para lectores de pantalla)"),
+                t("kicker", "Antetítulo"),
+                t("title", "Título"),
+                t("status", "Estado (ej. Disponible ahora)"),
+                t("waTitle", "WhatsApp · título"),
+                t("waText", "WhatsApp · texto"),
+                t("waMsg", "WhatsApp · mensaje prellenado"),
+                t("callTitle", "Llamar · título"),
+                t("callHours", "Llamar · horario"),
+                t("bookTitle", "Agendar · título"),
+                t("bookText", "Agendar · texto"),
+                t("note", "Nota al pie"),
+            ],
+        },
+        {
+            id: "booking",
+            label: "Textos de la agenda",
+            fields: [
+                t("virtualTitle", "Videollamada · título"),
+                t("virtualText", "Videollamada · texto"),
+                t("clinicTitle", "Valoración en clínica · título"),
+                t("clinicText", "Valoración en clínica · texto"),
+                ta("confirmText", "Mensaje al reservar"),
+                t("confirmWa", "Mensaje de WhatsApp para confirmar (usa {nombre}, {tipo}, {fecha})"),
+            ],
+        },
+        {
+            id: "rules",
+            label: "Reglas de la agenda (igual en ambos idiomas)",
+            fields: [
+                t("days", "Días de atención (1=lunes … 7=domingo, separados por coma)", { shared: true }),
+                t("start", "Hora de inicio (HH:MM, hora de Cancún)", { shared: true }),
+                t("end", "Hora de cierre (HH:MM)", { shared: true }),
+                t("virtualMin", "Duración videollamada (minutos)", { shared: true }),
+                t("clinicMin", "Duración valoración en clínica (minutos)", { shared: true }),
+                t("noticeMin", "Anticipación mínima (minutos)", { shared: true }),
+                t("windowDays", "Días visibles hacia adelante", { shared: true }),
+                ta("blocked", "Fechas bloqueadas (AAAA-MM-DD, una por renglón)", { shared: true }),
+            ],
+        },
+        {
+            id: "photos",
+            label: "Formulario de fotos",
+            fields: [
+                t("title", "Título de las fotos"),
+                ta("text", "Instrucciones"),
+                ...repeat(5, "f", "Foto", [t("label", "Nombre"), t("tip", "Indicación"), img("example", "Ejemplo")]),
+                t("submit", "Botón de enviar"),
+                ta("success", "Mensaje al enviar"),
+            ],
+        },
+    ],
+});
+
 export function getPageDef(id: string): PageDef | undefined {
     return PAGES.find((p) => p.id === id);
 }

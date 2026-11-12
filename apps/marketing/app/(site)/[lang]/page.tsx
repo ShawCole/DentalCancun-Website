@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function HomePage({ params }: Params) {
     const lang = (await params).lang as Lang;
-    const [content, site] = await Promise.all([getPageContent("home", lang), getPageContent("site", lang)]);
+    const [content, site, concierge] = await Promise.all([getPageContent("home", lang), getPageContent("site", lang), getPageContent("concierge", lang)]);
     const contact = site.contact || {};
     const schema = {
         "@context": "https://schema.org",
@@ -40,7 +40,7 @@ export default async function HomePage({ params }: Params) {
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-            <Home lang={lang} c={content} site={site} />
+            <Home lang={lang} c={content} site={site} photos={concierge.photos || {}} />
         </>
     );
 }

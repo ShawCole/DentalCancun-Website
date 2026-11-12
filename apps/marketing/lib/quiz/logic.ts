@@ -154,14 +154,14 @@ export function explain(a: Answers, r: Recommendation, lang: Lang) {
     const pr = lab("prioridad");
     const comprension = lang === "es"
         ? `Nos contaste que te gustaría ${need}${detail ? ` y que buscas «${detail}»` : ""}${pr ? `. Para ti, lo más importante es «${pr}»` : ""}.`
-        : `You told us you would like to ${need}${detail ? ` and that you’re looking for “${detail}”` : ""}${pr ? `. What matters most to you is “${pr}”` : ""}.`;
+        : `You told us you’d like to ${need}${detail ? `, and you’re looking for “${detail}”` : ""}${pr ? `. What matters most to you: “${pr}”` : ""}.`;
     return {
         comprension,
         solucion: quiz.treatments[r.id].desc,
         invitacion: quiz.cta,
         nota: lang === "es"
             ? "Resultado orientativo basado en tus respuestas. La indicación final, los tiempos y la inversión se confirman en tu valoración clínica."
-            : "Guidance based on your answers. The final indication, timing and investment are confirmed at your clinical assessment.",
+            : "This is based on your answers. Your dentist confirms the treatment, timing and cost at your exam.",
     };
 }
 

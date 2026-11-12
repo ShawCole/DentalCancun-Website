@@ -2,11 +2,13 @@ import type { Lang, PageContent, SectionValues } from "@/lib/cms/schema";
 import { Button, filled, Kicker, Lines, Rich, waLink } from "./ui";
 import { VideoButton } from "./VideoButton";
 import { Quiz } from "./Quiz";
+import { PhotoForm } from "./PhotoForm";
 
 interface Props {
     lang: Lang;
     c: PageContent;
     site: PageContent;
+    photos: SectionValues;
 }
 
 const items = (s: SectionValues = {}, prefix: string, n: number, key: string) =>
@@ -15,7 +17,7 @@ const items = (s: SectionValues = {}, prefix: string, n: number, key: string) =>
 const container = "mx-auto w-full max-w-[1320px] px-5 md:px-8";
 const h2 = "font-serif text-[2.4rem] font-medium leading-[1.05] text-grafito md:text-[3.6rem]";
 
-export function Home({ lang, c, site }: Props) {
+export function Home({ lang, c, site, photos }: Props) {
     const wa = site.contact?.whatsapp || "";
     const es = lang === "es";
     const { hero = {}, trust = {}, treatments = {}, quiz = {}, case: kase = {}, testimonials = {}, team = {}, members = {}, concierge = {}, assessment = {}, guarantee = {}, closing = {} } = c;
@@ -267,16 +269,12 @@ export function Home({ lang, c, site }: Props) {
                         <Kicker>{assessment.kicker}</Kicker>
                         <Rich as="h2" text={assessment.title} className={h2} />
                     </div>
-                    <div className="grid gap-6 lg:grid-cols-2">
-                        <div className="flex flex-col gap-4 rounded-[32px] border border-dorado/30 bg-white p-8">
+                    <div className="grid items-start gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+                        <div className="flex flex-col gap-4 rounded-[32px] border border-dorado/30 bg-marfil p-6 md:p-8">
                             <p className="text-xs font-bold uppercase tracking-[0.16em] text-dorado-texto">{assessment.uploadLabel}</p>
                             <h3 className="font-serif text-3xl font-semibold leading-tight">{assessment.uploadTitle}</h3>
                             <p className="text-sm leading-relaxed text-gris">{assessment.uploadText}</p>
-                            <div className="mt-auto pt-2">
-                                <Button href={waLink(wa, assessment.uploadMsg)} external>
-                                    {assessment.uploadCta}
-                                </Button>
-                            </div>
+                            <PhotoForm lang={lang} c={photos} whatsapp={wa} />
                         </div>
                         <div className="flex flex-col gap-4 rounded-[32px] bg-champana p-8">
                             <div className="flex items-center justify-between gap-3">
@@ -286,9 +284,7 @@ export function Home({ lang, c, site }: Props) {
                             <h3 className="font-serif text-3xl font-semibold leading-tight">{assessment.callTitle}</h3>
                             <p className="text-sm leading-relaxed text-gris">{assessment.callText}</p>
                             <div className="mt-auto pt-2">
-                                <Button href={waLink(wa, assessment.callMsg)} external>
-                                    {assessment.callCta}
-                                </Button>
+                                <Button href="#agendar-virtual">{assessment.callCta}</Button>
                             </div>
                             <p className="text-xs leading-relaxed text-gris">{assessment.deposit}</p>
                         </div>
