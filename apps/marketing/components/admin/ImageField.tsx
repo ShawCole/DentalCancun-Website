@@ -37,7 +37,7 @@ export function ImageField({ value, onChange }: { value: string; onChange: (v: s
             <dialog
                 ref={dialog}
                 onClose={() => setOpen(false)}
-                className="w-[min(960px,calc(100vw-32px))] rounded-2xl p-0 backdrop:bg-black/50"
+                className="m-auto w-[min(960px,calc(100vw-32px))] rounded-2xl p-0 backdrop:bg-black/50"
                 aria-label="Biblioteca de imágenes"
             >
                 <div className="flex max-h-[85vh] flex-col gap-4 overflow-y-auto bg-[#F6F3ED] p-5">
