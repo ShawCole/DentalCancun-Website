@@ -4,6 +4,8 @@
  * content with the same ids. To make something editable, add it here.
  */
 
+import { LANDINGS } from "./landings";
+
 export type Lang = "es" | "en";
 export const LANGS: Lang[] = ["es", "en"];
 export const LANG_LABEL: Record<Lang, string> = { es: "Español", en: "English" };
@@ -354,6 +356,42 @@ PAGES.push({
                 ta("success", "Mensaje al enviar"),
             ],
         },
+    ],
+});
+
+/* Treatment landing pages: one schema, seven pages (content in landings.ts). */
+for (const l of LANDINGS) {
+    PAGES.push({
+        id: `tratamiento-${l.id}`,
+        label: `Tratamiento · ${l.label}`,
+        path: { es: `/es/tratamientos/${l.slug.es}`, en: `/en/treatments/${l.slug.en}` },
+        sections: [
+            { id: "hero", label: "Portada", fields: [t("kicker", "Antetítulo"), t("title", "Título", { help: EM }), ta("subtitle", "Bajada")] },
+            { id: "facts", label: "Lo esencial", fields: repeat(4, "k", "Dato", [t("label", "Etiqueta"), t("value", "Valor")]) },
+            { id: "media", label: "Imágenes", fields: [img("img1", "Imagen principal"), img("img2", "Imagen secundaria (opcional)")] },
+            { id: "intro", label: "Descripción", fields: [t("title", "Título", { help: EM }), ta("text", "Texto")] },
+            { id: "fit", label: "¿Es para ti?", fields: [t("title", "Título", { help: EM }), ...repeat(4, "f", "Tarjeta", [t("title", "Título"), t("text", "Texto")]), ta("note", "Nota")] },
+            { id: "process", label: "Tu proceso", fields: [t("title", "Título", { help: EM }), ...repeat(5, "s", "Paso", [t("title", "Título"), t("text", "Texto")])] },
+            { id: "expert", label: "Materiales y equipo", fields: [t("title", "Título", { help: EM }), ta("text", "Texto")] },
+            { id: "price", label: "Inversión", fields: [t("amount", "Monto o «Plan personalizado»"), ta("note", "Nota")] },
+            { id: "stories", label: "Testimonios", fields: [t("videos", "Videos a mostrar (números de los testimonios del Inicio, ej. 2,5,10)", { shared: true })] },
+            { id: "faq", label: "Preguntas frecuentes", fields: [t("title", "Título", { help: EM }), ...repeat(5, "q", "Pregunta", [t("q", "Pregunta"), ta("a", "Respuesta")])] },
+            { id: "closing", label: "Cierre", fields: [t("title", "Título", { help: EM }), t("waMsg", "Mensaje prellenado de WhatsApp")] },
+            seo,
+        ],
+    });
+}
+
+PAGES.push({
+    id: "tratamientos",
+    label: "Tratamientos (página general)",
+    path: { es: "/es/tratamientos", en: "/en/treatments" },
+    sections: [
+        { id: "hero", label: "Portada", fields: [t("kicker", "Antetítulo"), t("title", "Título", { help: EM }), ta("subtitle", "Bajada")] },
+        { id: "groups", label: "Grupos", fields: [t("g1_kicker", "Grupo 1 · antetítulo"), t("g1_title", "Grupo 1 · título", { help: EM }), t("g2_kicker", "Grupo 2 · antetítulo"), t("g2_title", "Grupo 2 · título", { help: EM })] },
+        { id: "cards", label: "Tarjetas", fields: repeat(7, "c", "Tratamiento", [t("meta", "Dato corto (ej. 1 cita · Conservadora)"), t("text", "Texto")]) },
+        { id: "steps", label: "Cómo decidimos contigo", fields: [t("kicker", "Antetítulo"), t("title", "Título", { help: EM }), ...repeat(3, "s", "Paso", [t("title", "Título"), t("text", "Texto")])] },
+        seo,
     ],
 });
 

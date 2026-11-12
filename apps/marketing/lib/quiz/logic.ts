@@ -4,6 +4,7 @@
 import ES from "./quiz-es.json";
 import EN from "./quiz-en.json";
 import type { Lang } from "@/lib/cms/schema";
+import { LANDINGS } from "@/lib/cms/landings";
 
 export interface Option { id: string; label: string; next: string | null; g?: string }
 export interface Question { text: string; help?: string; affects: boolean; options: Option[] }
@@ -14,15 +15,7 @@ export interface Recommendation { id: string; alt: string | null; rule: string; 
 
 const BASE = ES as unknown as Quiz;
 
-const SLUG_EN: Record<string, string> = {
-    "carillas-directas": "direct-veneers",
-    "carillas-ceramicas": "porcelain-veneers",
-    alineadores: "clear-aligners",
-    coronas: "crowns",
-    "implantes-dentales": "dental-implants",
-    protesis: "dentures",
-    "all-on-4": "all-on-4",
-};
+const SLUG_EN: Record<string, string> = Object.fromEntries(LANDINGS.map((l) => [l.slug.es, l.slug.en]));
 
 export function treatmentUrl(slug: string, lang: Lang): string {
     if (!slug) return "";
