@@ -167,19 +167,21 @@ export function Home({ lang, c, site, photos }: Props) {
                         </div>
                         <p className="max-w-sm text-sm leading-relaxed text-gris">{testimonials.note}</p>
                     </div>
-                    <ul className="grid gap-6 md:grid-cols-3">
-                        {[1, 2, 3].filter((i) => filled(testimonials[`q${i}_video`]) || filled(testimonials[`q${i}_poster`])).map((i) => (
-                            <li key={i} className="glass flex flex-col gap-4 rounded-[28px] p-4">
+                    <ul aria-label={es ? "Videos de pacientes" : "Patient videos"} className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 md:mx-0 md:px-0">
+                        {Array.from({ length: 15 }, (_, k) => k + 1).filter((i) => filled(testimonials[`q${i}_video`]) || filled(testimonials[`q${i}_poster`])).map((i) => (
+                            <li key={i} className="glass flex w-[72%] shrink-0 snap-start flex-col gap-3 rounded-[28px] p-3 sm:w-[44%] lg:w-[23.5%]">
                                 {filled(testimonials[`q${i}_video`]) ? (
                                     <video src={testimonials[`q${i}_video`]} poster={testimonials[`q${i}_poster`] || undefined} controls playsInline preload="none" className="aspect-[9/16] w-full rounded-[22px] bg-black object-cover" />
                                 ) : (
                                     // eslint-disable-next-line @next/next/no-img-element
                                     <img src={testimonials[`q${i}_poster`]} alt={testimonials[`q${i}_author`] || ""} className="aspect-[9/16] w-full rounded-[22px] object-cover" />
                                 )}
-                                <figure className="px-2 pb-2">
-                                    <blockquote className="font-serif text-xl font-semibold leading-snug">{testimonials[`q${i}_quote`]}</blockquote>
-                                    <figcaption className="mt-2 text-sm text-gris">{testimonials[`q${i}_author`]}</figcaption>
-                                </figure>
+                                {(filled(testimonials[`q${i}_quote`]) || filled(testimonials[`q${i}_author`])) && (
+                                    <figure className="px-2 pb-2">
+                                        {filled(testimonials[`q${i}_quote`]) && <blockquote className="font-serif text-xl font-semibold leading-snug">{testimonials[`q${i}_quote`]}</blockquote>}
+                                        {filled(testimonials[`q${i}_author`]) && <figcaption className="mt-2 text-sm text-gris">{testimonials[`q${i}_author`]}</figcaption>}
+                                    </figure>
+                                )}
                             </li>
                         ))}
                     </ul>

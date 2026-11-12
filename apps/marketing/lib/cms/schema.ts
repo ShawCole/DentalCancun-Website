@@ -178,7 +178,7 @@ export const PAGES: PageDef[] = [
                     t("kicker", "Antetítulo"),
                     t("title", "Título", { help: EM }),
                     ta("note", "Nota"),
-                    ...repeat(3, "q", "Testimonio", [
+                    ...repeat(15, "q", "Testimonio", [
                         url("video", "Video vertical (.mp4)", true),
                         img("poster", "Póster o foto 9:16"),
                         t("quote", "Cita"),
