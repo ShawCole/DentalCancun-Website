@@ -69,6 +69,11 @@ export function Footer({ lang, site }: { lang: Lang; site: PageContent }) {
                                 </a>
                             </li>
                         ))}
+                        <li>
+                            <a href={`${base}/blog`} className="text-grafito underline-offset-4 hover:text-verde hover:underline">
+                                Blog
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div>
