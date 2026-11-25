@@ -10,6 +10,13 @@ import { loadDraft, publishPage, saveDraft, type DraftDoc, type PuckData } from 
 import { allText, brandIssues, type BrandIssue } from "@/lib/brand";
 import { listVersions, type Version } from "@/lib/cms/client";
 
+/** Preview sizes shown in the editor toolbar (the page is checked at these widths before publishing). */
+const VIEWPORTS = [
+    { width: 1280, height: "auto" as const, label: "Escritorio", icon: "Monitor" as const },
+    { width: 768, height: "auto" as const, label: "Tablet", icon: "Tablet" as const },
+    { width: 390, height: "auto" as const, label: "Móvil", icon: "Smartphone" as const },
+];
+
 /** Brand check before publishing (the price amount is skipped: it hides itself until approved). */
 function check(data: PuckData): BrandIssue[] {
     const copy = JSON.parse(JSON.stringify(data || {}));
@@ -129,6 +136,7 @@ export function BuilderEditor({ id }: { id: string }) {
                     config={editorConfig}
                     data={page.data}
                     headerTitle={page.title}
+                    viewports={VIEWPORTS}
                     onChange={(d: PuckData) => {
                         latest.current = d;
                         setDirty(true);
