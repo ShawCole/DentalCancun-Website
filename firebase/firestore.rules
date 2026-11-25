@@ -13,6 +13,16 @@ service cloud.firestore {
         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
 
+    // Perfiles del panel: cada persona lee solo el suyo (el admin lee todos) y solo puede actualizar
+    // su "lastLogin". El rol (admin/staff) se asigna únicamente desde la consola de Firebase.
+    // Si tu proyecto ya tiene una regla para /users, no dupliques esta.
+    match /users/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || cmsIsAdmin());
+      allow update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastLogin']);
+      allow create, delete: if false;
+    }
+
     // Textos de las páginas: lectura pública (el sitio los muestra), escritura solo administradores.
     match /cms_pages/{pageId} {
       allow read: if true;
